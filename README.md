@@ -1,42 +1,23 @@
 # Lotoks
 
-Global sponsorship platform — Visa, Education, Job, and PR solutions.
+## Project Structure
 
-## Repository Structure
-
-```
 lotoks/
-├── lotoks-frontend/   # Vite + React SPA — deploy to Vercel
+├── lotoks-frontend/   # Vite + React SPA — deployed to Vercel
 ├── lotoks-backend/    # Express + SQLite API — deploy to Railway or Render
 ├── scripts/           # Utility scripts
 ├── processed_assets/  # Pre-processed image assets
-└── AGENTS.md          # Agent instructions
-```
+├── .kilo/             # Kilo config
+└── AGENTS.md          # AI agent instructions
 
-## Frontend (`lotoks-frontend/`)
+## Frontend (lotoks-frontend/)
+- Stack: Vite + React 19, TypeScript, React Router DOM v7, TanStack Query v5, Zustand, Framer Motion
+- Deploy: Vercel — set Root Directory to `lotoks-frontend` in Vercel dashboard
+- Dev: `cd lotoks-frontend && npm install && npm run dev`
+- Build: `cd lotoks-frontend && npm run build`
 
-Vite + React 19 SPA with React Router DOM v7, TanStack Query v5, Zustand, Framer Motion, Tailwind CSS v4.
-
-```bash
-cd lotoks-frontend
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # Production build → dist/
-```
-
-Vercel deployment is configured via `lotoks-frontend/vercel.json`. Connect this folder as the Vercel root directory.
-
-## Backend (`lotoks-backend/`)
-
-Express + SQLite REST API. Deploy separately to Railway or Render.
-
-```bash
-cd lotoks-backend
-npm install
-npm run build
-node dist/server.js   # http://localhost:3001
-```
-
-**Seeded admin credentials:**
-- Email: `admin@lotoks.com`
-- Password: `admin123`
+## Backend (lotoks-backend/)
+- Stack: Node.js, Express, SQLite, JWT, BCryptJS
+- Deploy separately on Railway or Render (not on Vercel)
+- Dev: `cd lotoks-backend && npm run build && node dist/server.js`
+- Default admin: admin@lotoks.com / admin123
