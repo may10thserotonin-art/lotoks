@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "home": "Nyumbani",
+    "about": "Kuhusu Sisi",
+    "services": "Huduma Zetu",
+    "testimonials": "Ushuhuda",
+    "contact": "Wasiliana Nasi",
+    "requirements": "Mahitaji",
+    "eligibility": "Angalia Kustahiki",
+    "apply": "Tuma Ombi",
+    "login": "Ingia",
+    "dashboard": "Dashibodi",
+    "admin": "Jopo la Usimamizi"
+  },
+  "hero": {
+    "title": "Safari Yako ya Dunia Inaanza Hapa",
+    "subtitle": "Udhamini wa visa, ufadhili wa masomo, nafasi za kazi, na ukaazi wa kudumu — tunafanya uhamaji wa kimataifa kuwa rahisi.",
+    "cta": "Anza Sasa",
+    "ctaSecondary": "Jifunze Zaidi"
+  },
+  "services": {
+    "title": "Huduma Zetu",
+    "subtitle": "Suluhu kamili za uhamaji wa kimataifa zilizobinafsishwa kwa mahitaji yako",
+    "visa": "Udhamini wa Visa",
+    "visaDesc": "Mwongozo wa kitaalamu kwa visa za kazi, muunganisho wa familia, na uhamiaji wa kibiashara.",
+    "education": "Elimu na Ufadhili",
+    "educationDesc": "Fikia vyuo vikuu bora ulimwenguni kwa fursa za ufadhili wa masomo.",
+    "jobs": "Nafasi za Kazi",
+    "jobsDesc": "Ungana na waajiri wakuu wa kimataifa katika sekta mbalimbali.",
+    "residence": "Ukaazi wa Kudumu",
+    "residenceDesc": "Njia za ukaazi wa kudumu kupitia uwekezaji, ujuzi, na familia."
+  },
+  "common": {
+    "loading": "Inapakia...",
+    "error": "Hitilafu imetokea",
+    "save": "Hifadhi",
+    "cancel": "Ghairi",
+    "delete": "Futa",
+    "edit": "Hariri",
+    "create": "Unda",
+    "search": "Tafuta",
+    "filter": "Chuja",
+    "export": "Hamisha",
+    "status": "Hali",
+    "actions": "Vitendo",
+    "yes": "Ndiyo",
+    "no": "Hapana",
+    "submit": "Wasilisha",
+    "back": "Rudi",
+    "next": "Inayofuata",
+    "finish": "Maliza",
+    "close": "Funga"
+  }
+}

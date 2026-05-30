@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "services": "Nos Services",
+    "testimonials": "Témoignages",
+    "contact": "Contactez-Nous",
+    "requirements": "Conditions",
+    "eligibility": "Vérifier l'Éligibilité",
+    "apply": "Postuler",
+    "login": "Connexion",
+    "dashboard": "Tableau de Bord",
+    "admin": "Panneau d'Administration"
+  },
+  "hero": {
+    "title": "Votre Voyage Mondial Commence Ici",
+    "subtitle": "Parrainages de visa, bourses d'études, placements professionnels et résidence permanente — nous rendons la mobilité mondiale simple.",
+    "cta": "Commencer",
+    "ctaSecondary": "En Savoir Plus"
+  },
+  "services": {
+    "title": "Nos Services",
+    "subtitle": "Solutions complètes de mobilité mondiale adaptées à vos besoins",
+    "visa": "Parrainage de Visa",
+    "visaDesc": "Conseils d'experts pour les visas de travail, le regroupement familial et l'immigration d'affaires.",
+    "education": "Éducation et Bourses",
+    "educationDesc": "Accédez aux meilleures universités du monde avec des opportunités de bourses.",
+    "jobs": "Placements Professionnels",
+    "jobsDesc": "Connectez-vous avec des employeurs internationaux de premier plan dans plusieurs secteurs.",
+    "residence": "Résidence Permanente",
+    "residenceDesc": "Voies vers la résidence permanente par l'investissement, les compétences et la famille."
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "export": "Exporter",
+    "status": "Statut",
+    "actions": "Actions",
+    "yes": "Oui",
+    "no": "Non",
+    "submit": "Soumettre",
+    "back": "Retour",
+    "next": "Suivant",
+    "finish": "Terminer",
+    "close": "Fermer"
+  }
+}

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 110" width="320" height="110">
+  <!-- Shield emblem -->
+  <polygon points="22,8 58,8 66,34 40,52 14,34" fill="#003087"/>
+  <polygon points="27,13 53,13 59,32 40,46 21,32" fill="#C9A44B" opacity="0.85"/>
+  <text x="40" y="36" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="11" font-weight="900" fill="white">UI</text>
+  <!-- Brand text -->
+  <text x="80" y="38" font-family="Arial Black, Arial, sans-serif" font-size="28" font-weight="900" fill="#003087">UITM</text>
+  <line x1="80" y1="46" x2="300" y2="46" stroke="#C9A44B" stroke-width="1.5"/>
+  <text x="80" y="62" font-family="Arial, sans-serif" font-size="9.5" fill="#444" letter-spacing="0.3">University of Information Technology</text>
+  <text x="80" y="75" font-family="Arial, sans-serif" font-size="9.5" fill="#444" letter-spacing="0.3">and Management in Rzeszów</text>
+  <text x="80" y="92" font-family="Arial, sans-serif" font-size="8" fill="#888" letter-spacing="1">POLAND · ACCREDITED PARTNER</text>
+</svg>

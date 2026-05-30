@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "home": "Ile",
+    "about": "Nipa Wa",
+    "services": "Awọn Iṣẹ Wa",
+    "testimonials": "Awọn Ẹri",
+    "contact": "Kan Si Wa",
+    "requirements": "Awọn Ọ̀nà",
+    "eligibility": "Ṣayẹwo Ẹtọ",
+    "apply": "Bẹrẹ Ìbéèrè",
+    "login": "Wọle",
+    "dashboard": "Dáṣíbọ́ọ̀dù",
+    "admin": "Ìṣàkóso"
+  },
+  "hero": {
+    "title": "Ìrìn Àjò Rẹ ń Bẹ̀rẹ̀ Níhìn-ín",
+    "subtitle": "Ìṣiṣẹ́ fífúnni ní Visa, SIKÓLASIPU ẹ̀kọ́, Ifiṣẹ́ sínú iṣẹ́, àti Ibi-ìgbé ayérayé — a jẹ́ kí òmíràn kárí ayé rọrùn.",
+    "cta": "Bẹ̀rẹ̀",
+    "ctaSecondary": "Kọ́ Èkọ́ Díẹ̀"
+  },
+  "services": {
+    "title": "Awọn Iṣẹ Wa",
+    "subtitle": "Awọn ojutu iṣipopada kariaye ti o peye ti a ṣe deede si awọn aini rẹ",
+    "visa": "Ìṣiṣẹ́ Visa",
+    "visaDesc": "Itọsọna amoye fun awọn visa iṣẹ, isọdọkan idile, ati iṣiwa iṣowo.",
+    "education": "Ẹ̀kọ́ àti Síkólásípù",
+    "educationDesc": "Wọle si awọn ile-ẹkọ giga ti o ga julo ni agbaye pẹlu awọn anfani sikolashipu.",
+    "jobs": "Ifiṣẹ́ si",
+    "jobsDesc": "Ni asopọ pẹlu awọn agbanisiṣẹ agbaye ti o ni itọsọna kọja awọn ile-iṣẹ pupọ.",
+    "residence": "Ibi-Ìgbé Ayérayé",
+    "residenceDesc": "Awọn ipa ọna si ibi-igbe ayérayé nipasẹ idoko-owo, awọn ọgbọn, ati ẹbi."
+  },
+  "common": {
+    "loading": "Njẹ ikojọpọ...",
+    "error": "Aṣiṣe kan ṣẹlẹ",
+    "save": "Fi Pamo",
+    "cancel": "Fagi",
+    "delete": "Pa Rẹ",
+    "edit": "Ṣatunkọ",
+    "create": "Dá",
+    "search": "Wá",
+    "filter": "Àjọyọ",
+    "export": "Gbe Jáde",
+    "status": "Ipo",
+    "actions": "Awọn iṣe",
+    "yes": "Bẹẹni",
+    "no": "Rara",
+    "submit": "Fi Ránṣẹ́",
+    "back": "Pẹ̀sẹ",
+    "next": "Atẹle",
+    "finish": "Parí",
+    "close": "Pa"
+  }
+}
