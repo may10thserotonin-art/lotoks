@@ -1,106 +1,91 @@
 # Lotoks Website - Agent Instructions
 
 ## Project Overview
-- **Framework**: Next.js 14 (App Router) with TypeScript
-- **Styling**: Tailwind CSS v4 (using `@theme` in globals.css)
-- **State Management**: Zustand (`/src/store/auth.ts`)
-- **Build**: `npm run build` (includes type check)
+- **Framework**: Vite + React 19, TypeScript, React Router DOM v7
+- **Styling**: Tailwind CSS v4 (configured via `@tailwindcss/vite` plugin)
+- **State Management**: Zustand (`lotoks-frontend/src/store/`)
+- **Data Fetching**: TanStack Query v5
+- **Animations**: Framer Motion
+- **Build**: `npm run build` (TypeScript check + Vite build)
 - **Dev**: `npm run dev`
 
+> ⚠️ **No root-level Next.js app exists anymore.** All frontend code lives in `lotoks-frontend/`.
+
 ## Key Commands
+
 ```bash
-npm run dev      # Start development server
-npm run build    # Production build (includes type check)
-npm run lint     # ESLint check
+# Frontend
+cd lotoks-frontend
+npm run dev      # Start dev server on http://localhost:5173/
+npm run build    # Builds production distribution assets in dist/
+
+# Backend
+cd lotoks-backend
+npm run build     # Compiles TS to dist/
+node dist/server.js  # Launches backend on port 3001
 ```
 
 ## Project Structure
+
 ```
-src/
-├── app/                 # Next.js App Router pages
-│   ├── page.tsx         # Landing page
-│   ├── dashboard/       # User dashboard
-│   ├── admin/           # Admin panel (queue, listings, payments, staff, config, languages)
-│   ├── login/           # Auth with preview login
-│   ├── apply/           # Application wizard
-│   ├── eligibility/     # Eligibility quiz
-│   ├── opportunities/    # Job/education listings
-│   ├── documents/       # User documents
-│   └── payment/          # Payment page
-├── components/          # Reusable UI components
-│   ├── Navigation.tsx    # Sidebar, mobile menu, tab bar
-│   └── Hero3D.tsx       # 3D hero section with Three.js
-├── store/               # Zustand state
-│   └── auth.ts          # Auth store (preview login)
-├── hooks/               # Custom React hooks
-└── types/               # TypeScript declarations
+lotoks/
+├── lotoks-frontend/        # Vite + React SPA — THE main frontend
+│   ├── src/
+│   │   ├── pages/          # Route-level page components
+│   │   ├── components/     # Reusable UI components
+│   │   ├── store/          # Zustand state stores
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── lib/            # API clients, utilities
+│   │   └── types/          # TypeScript type declarations
+│   ├── public/             # Static assets
+│   ├── index.html          # Vite HTML entry point
+│   ├── vite.config.ts      # Vite configuration
+│   └── vercel.json         # Vercel deployment config (rewrites for React Router)
+├── lotoks-backend/         # Express + SQLite REST API
+│   ├── src/                # TypeScript source
+│   └── scripts/schema.sql  # MySQL schema reference
+├── scripts/                # Utility/migration scripts
+├── processed_assets/       # Pre-processed image assets (card/hero layouts)
+└── AGENTS.md               # This file
 ```
+
+## Vercel Deployment
+
+- **Frontend** deploys from `lotoks-frontend/` as the root directory
+- `lotoks-frontend/vercel.json` configures build command, output dir, and SPA rewrites
+- The `rewrites` rule redirects all paths to `/index.html` so React Router handles navigation
+- **Backend** is deployed separately (Railway or Render), NOT on Vercel
 
 ## Important Notes
 
-### Authentication
-- Preview login bypasses real auth: use `/login` page buttons for "Preview User Dashboard" or "Preview Admin Panel"
-- Auth state managed via Zustand (`useAuthStore`)
-
 ### Routing
-- User dashboard at `/dashboard`
-- Admin panel at `/admin/*` (queue, listings, payments, staff, config, languages)
-- Mobile navigation via hamburger menu (MobileMenu component)
+- React Router DOM v7 (`react-router-dom`) handles all client-side routing
+- Use `useNavigate` instead of Next.js `useRouter`
+- Use `<Link to="...">` instead of Next.js `<Link href="...">`
+- Use `useParams`, `useLocation` from `react-router-dom`
+
+### Authentication
+- Auth state managed via Zustand store in `lotoks-frontend/src/store/`
+- JWT tokens stored in cookies, validated against `/api/auth/me` on the backend
+- Backend seeded credentials: `admin@lotoks.com` / `admin123` (role: `super_admin`)
+
+### Backend API
+- Express backend runs on port `3001`
+- Vite dev server proxies `/api` requests to `http://localhost:3001` (see `vite.config.ts`)
+- SQLite database auto-seeds on first run
 
 ### Tailwind CSS v4
-- Theme tokens defined in `/src/app/globals.css` under `@theme`
-- Custom colors: `navy`, `gold`, `teal`, `red` plus existing primary/secondary/tertiary
-- Use `@apply` sparingly; prefer utility classes directly
+- Uses `@tailwindcss/vite` plugin (not PostCSS)
+- Theme config in `lotoks-frontend/tailwind.config.js`
 
-### Known Issues Fixed
-- three.js v0.162+ uses `colorSpace={THREE.SRGBColorSpace}` instead of deprecated `encoding={THREE.sRGBEncoding}`
-- React 19 + @react-three/fiber v9 required for compatibility
-- R3F JSX types may need `@ts-ignore` workaround in Next.js type system
-
-### Brand Colors (in globals.css)
-```css
---color-navy: #0B1D3A
---color-gold: #C9A44B
---color-teal: #1D7A7A
---color-red: #D14B4B
-```
+### AI Layout Design Assets (`processed_assets/`)
+Pre-compiled premium card and horizontal hero assets:
+- **`card_ready.jpg`** (300 × 400 px): Subject-centered card layout
+- **`web_ready.jpg`** (1200 × 800 px): Off-center horizontal hero banner with gradient overlay
 
 ## Testing Changes
 After any code change, run:
 ```bash
-npm run build
+cd lotoks-frontend && npm run build
 ```
-This compiles and runs full TypeScript type checking. Build must pass before considering changes complete.
-
-## Frontend Conversion
-A standalone React Vite frontend is located in `lotoks-frontend/`. It is structured as a Vite SPA (using `react-router-dom` for routing) and communicates with a local Express.js backend on port 3001.
-
-### Standalone Frontend (`lotoks-frontend/`)
-* **Stack**: React 19, Vite 8, TypeScript 6, React Router DOM v7, TanStack Query v5, Zustand, Framer Motion, and Lucide React.
-* **Blank Page Fix**: Cleaned up legacy imports from `next/navigation` in `src/pages/Login.tsx` to use `react-router-dom`'s `useNavigate` to prevent browser rendering crashes.
-* **Build / Dev Commands**:
-  ```bash
-  cd lotoks-frontend
-  npm run dev       # Starts dev server on http://localhost:5173/
-  npm run build     # Builds production distribution assets in dist/
-  ```
-
-### Express Backend (`lotoks-backend/`)
-We implemented a lightweight, robust Express.js backend using SQLite. It mimics the full-scale MySQL schema (`scripts/schema.sql`) and self-seeds on its initial execution.
-* **Stack**: Node.js (ES Modules), Express, SQLite (`sqlite3` driver with Promise wrappers), JWT, Cookie Parser, BCryptJS, and TypeScript.
-* **Seeded Credentials**:
-  - **Email**: `admin@lotoks.com`
-  - **Password**: `admin123`
-  - **Role**: `super_admin`
-* **Port Configuration**: Port `3001` (to match the Vite frontend proxy `/api` redirect).
-* **Build / Dev Commands**:
-  ```bash
-  cd lotoks-backend
-  npm run build     # Compiles TS files to dist/
-  node dist/server.js # Launches the backend server and seeds database
-  ```
-
-### AI Layout Design Assets (`processed_assets/`)
-Pre-compiled premium card and horizontal hero assets are saved under `processed_assets/` (and root `card_ready.jpg`/`web_ready.jpg`). These were processed using an OpenCV Haar Cascade face-detection script to apply smart rule-of-thirds, vertical headroom alignment, edge gradient-shading, and theme-contrast tuning:
-* **`card_ready.jpg` / `.png`** (300 x 400 px): Subject-centered card layout with 24px rounded corners (JPG with navy bg, PNG with transparent alpha).
-* **`web_ready.jpg`** (1200 x 800 px): Off-center horizontal hero banner with a smooth left-side transparent-to-solid gradient overlay for clear typography overlays.
+Build must pass before considering changes complete.
