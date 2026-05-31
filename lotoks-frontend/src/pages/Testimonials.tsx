@@ -33,6 +33,18 @@ const filterOptions = [
 // Testimonials data mapping real graduation and general UGC videos
 const testimonials = [
   {
+    id: 0,
+    name: "Clyde",
+    country: "Poland (via South Africa)",
+    flag: "🇿🇦",
+    type: "education",
+    typeLabel: "Education & Visa",
+    quote: "My name is Clyde, and this photo was taken at Basel International Airport, Switzerland/France, on my way to Poland to begin my studies. The journey to this point was not an easy one. After completing my A-Level studies in 2023, I applied to study in Poland and initially thought the process would be straightforward. However, I soon encountered a major challenge: securing a visa appointment at the Polish Embassy in Pretoria. Despite my efforts, I struggled for a long time without success. Everything changed in late July 2025 when a close friend referred me to Lotoks Consulting Agency. From that moment, the process became much smoother. Within just two weeks, the Lotoks team helped me secure a visa appointment and assisted me with all the necessary supporting documents. Their professionalism, efficiency, and guidance made what seemed impossible become a reality. If you are struggling with your study abroad process and feel like you've run out of options, don't give up. There is a way forward, and I highly recommend Lotoks Consulting Agency for their outstanding support and reliable services.",
+    rating: 5,
+    hasVideo: false,
+    image: "/Clyde-Testimonials/Clyde.png",
+  },
+  {
     id: 1,
     name: "Aline Mwiza",
     country: "Poland (via Rwanda)",
@@ -240,18 +252,27 @@ const visaProofs = [
 const featuredTestimonials = testimonials.slice(0, 3);
 
 // Testimonial Card Component
-function TestimonialCard({ testimonial, index }: { testimonial: typeof testimonials[0]; index: number }) {
+function TestimonialCard({ testimonial, index }: { testimonial: any; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
+      className="h-full"
     >
       <GlassCard hoverable className="h-full relative overflow-hidden flex flex-col justify-between">
         <div>
           {/* Quote Icon */}
-          <Quote className="w-12 h-12 text-gold/20 absolute top-6 right-6" />
+          <Quote className="w-12 h-12 text-gold/20 absolute top-6 right-6 z-10" />
+          
+          {/* Optional Image */}
+          {testimonial.image && (
+            <div className="w-full h-56 mb-5 rounded-xl overflow-hidden relative">
+              <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover object-top" />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
+            </div>
+          )}
           
           {/* Type Badge */}
           <div className="inline-block px-3 py-1 rounded-full bg-gold/10 text-gold text-xs font-medium mb-4">
