@@ -77,34 +77,34 @@ const values = [
 // Team members
 const team = [
   {
-    name: "Thobekile Ruth Ngwenya",
-    role: "CEO & Founder",
+    name: "TR Ngwenya",
+    role: "Founder & Global Recruitment Director",
     image: "/Team-members/Thobekile-Ruth-Ngwenya-ceo-lotoks.png",
     bio: "Thobekile leads Lotoks with a visionary approach, integrating high-end technological innovations with robust operational strategies to shape the future of global enterprise solutions.",
   },
   {
-    name: "Karabo Ngcobo",
-    role: "Director of Technology",
-    image: "/Team-members/Karabo-Ngcobo.png",
-    bio: "Expert in scalable systems architecture, leading our engineering department with modern agile methodologies.",
+    name: "R Veremu",
+    role: "Corporate Relations and Business Development Director",
+    image: "/Team-members/Ronald-Veremu.png",
+    bio: "Specializing in next-gen interactive systems, cloud computing, and high-performance databases.",
   },
   {
-    name: "Lynette Ndlovu",
-    role: "Chief Operations Officer",
+    name: "SL Ndlovu",
+    role: "Head of International Placements & Client Success",
     image: "/Team-members/Lynette-Ndlovu.jpeg",
     bio: "Streamlining enterprise processes and driving operational performance across international teams.",
   },
   {
-    name: "Rethabile Ruth Nyathi",
-    role: "Head of Design & UX",
-    image: "/Team-members/Rethabile-Ruth-Nyathi.jpeg",
-    bio: "Crafting beautiful, modern, and human-centric user experiences that wow clients at first glance.",
+    name: "K Ngcobo",
+    role: "Head of Candidate Local Sourcing",
+    image: "/Team-members/Karabo-Ngcobo.png",
+    bio: "Expert in scalable systems architecture, leading our engineering department with modern agile methodologies.",
   },
   {
-    name: "Ronald Veremu",
-    role: "Lead Software Architect",
-    image: "/Team-members/Ronald-Veremu.png",
-    bio: "Specializing in next-gen interactive systems, cloud computing, and high-performance databases.",
+    name: "RR Nyathi",
+    role: "Candidate Sourcing & Data Capture Assistant",
+    image: "/Team-members/Rethabile-Ruth-Nyathi.jpeg",
+    bio: "Crafting beautiful, modern, and human-centric user experiences that wow clients at first glance.",
   },
 ];
 
