@@ -25,7 +25,8 @@ import {
   Sprout,
   Hammer,
   Ship,
-  Coins
+  Coins,
+  TrendingUp
 } from "lucide-react";
 import { Navbar, SectionWrapper, SectionHeading } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
@@ -507,6 +508,137 @@ function FAQSection() {
   );
 }
 
+// Enterprise services data
+const enterpriseServices = [
+  {
+    title: "Recruitment",
+    tagline: "Hire the best people",
+    description: "Finding the right people shouldn't slow your growth plans. We help you secure permanent, contract, and executive talent who fit your business goals.",
+    icon: Briefcase,
+    color: "gold",
+    bgHover: "hover:border-gold/50 shadow-gold/10 hover:shadow-gold/20",
+    textAccent: "text-gold",
+    bgAccent: "bg-gold/10",
+    bullets: [
+      "Industry-specific consultants who understand your market",
+      "Thorough search and assessment to deliver strong shortlists",
+      "Employer branding support to attract the best candidates",
+      "A transparent process that saves time and delivers results"
+    ]
+  },
+  {
+    title: "Outsourcing",
+    tagline: "Scale your talent operations",
+    description: "When hiring demands spike, your team needs flexibility. Our outsourcing solutions take the pressure off and keep things moving.",
+    icon: Users,
+    color: "teal",
+    bgHover: "hover:border-teal/50 shadow-teal/10 hover:shadow-teal/20",
+    textAccent: "text-teal",
+    bgAccent: "bg-teal/10",
+    bullets: [
+      "RPO models for full, project, or modular recruitment support",
+      "MSP programs to manage vendors, compliance, and costs",
+      "Direct sourcing combined with trusted supplier networks",
+      "Real-time dashboards and analytics for smarter decisions"
+    ]
+  },
+  {
+    title: "Talent Advisory",
+    tagline: "Make smarter workforce decisions",
+    description: "Talent strategies work best when they're backed by data. We turn insights into practical steps that improve attraction, retention, and performance.",
+    icon: TrendingUp,
+    color: "red",
+    bgHover: "hover:border-red/50 shadow-red/10 hover:shadow-red/20",
+    textAccent: "text-red",
+    bgAccent: "bg-red/10",
+    bullets: [
+      "Market intelligence to benchmark compensation packages",
+      "Diagnostics for diversity and candidate experience",
+      "Leadership coaching and development programs",
+      "Clear, actionable recommendations for long-term success"
+    ]
+  }
+];
+
+// Enterprise Talent Solutions Section
+function EnterpriseTalentSolutionsSection() {
+  return (
+    <SectionWrapper className="bg-navy relative overflow-hidden py-24">
+      {/* Background patterns */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
+        <div className="absolute top-10 left-10 w-96 h-96 bg-gold/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal/10 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4">
+        <SectionHeading 
+          title="Enterprise Talent Solutions"
+          subtitle="Workforce strategies designed to scale with your growth, drive efficiency, and elevate performance."
+          lightText
+        />
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16">
+          {enterpriseServices.map((service, index) => (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.15, duration: 0.5 }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              className={`bg-navy/40 backdrop-blur-md border border-white/10 p-8 rounded-3xl transition-all duration-300 flex flex-col justify-between shadow-2xl ${service.bgHover}`}
+            >
+              <div>
+                {/* Icon & Title Group */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className={`w-14 h-14 rounded-2xl ${service.bgAccent} flex items-center justify-center flex-shrink-0`}>
+                    <service.icon className={`w-7 h-7 ${service.textAccent}`} />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white font-heading">
+                      {service.title}
+                    </h3>
+                    <p className={`text-sm font-semibold tracking-wide uppercase ${service.textAccent}`}>
+                      {service.tagline}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <p className="text-white/70 text-sm leading-relaxed mb-6">
+                  {service.description}
+                </p>
+
+                {/* Bullets */}
+                <div className="space-y-3 mb-8">
+                  {service.bullets.map((bullet, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <CheckCircle className={`w-3.5 h-3.5 ${service.textAccent}`} />
+                      </div>
+                      <span className="text-white/80 text-xs leading-normal">{bullet}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action */}
+              <div className="pt-4 border-t border-white/5">
+                <Link to="/contact" className="w-full">
+                  <button className="w-full py-3 px-4 rounded-xl border border-white/10 text-white font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 group hover:bg-white hover:text-navy">
+                    Partner With Us
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </button>
+                </Link>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </SectionWrapper>
+  );
+}
+
 // Stats Section
 function StatsSection() {
   const stats = [
@@ -597,6 +729,7 @@ export default function ServicesPage() {
         </div>
       </SectionWrapper>
 
+      <EnterpriseTalentSolutionsSection />
       <StatsSection />
       <FAQSection />
 
