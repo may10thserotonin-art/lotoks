@@ -357,11 +357,8 @@ function PartnersSection() {
         {/* Partner cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {partners.map((partner, index) => (
-            <motion.a
+            <motion.div
               key={partner.name}
-              href={partner.website}
-              target="_blank"
-              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -372,7 +369,7 @@ function PartnersSection() {
                 delay: index * 0.15 
               }}
               whileHover="hover"
-              className="group relative overflow-hidden flex flex-col bg-[#b7974a] border border-[#b7974a]/40 rounded-2xl p-7 hover:border-white/40 hover:shadow-[0_20px_45px_rgba(183,151,74,0.35)] transition-all duration-300 cursor-pointer"
+              className="group relative overflow-hidden flex flex-col bg-[#b7974a] border border-[#b7974a]/40 rounded-2xl p-7 hover:border-white/40 hover:shadow-[0_20px_45px_rgba(183,151,74,0.35)] transition-all duration-300"
             >
               {/* Dynamic diagonal shine animation sweep */}
               <motion.div
@@ -410,13 +407,7 @@ function PartnersSection() {
               <p className="text-navy/85 text-sm leading-relaxed flex-1 font-medium">
                 {partner.description}
               </p>
-
-              {/* Link */}
-              <div className="flex items-center gap-2 mt-5 text-navy text-sm font-semibold group-hover:gap-3 transition-all border-t border-navy/15 pt-4">
-                <span>Visit Website</span>
-                <ExternalLink className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </div>
-            </motion.a>
+            </motion.div>
           ))}
         </div>
 
