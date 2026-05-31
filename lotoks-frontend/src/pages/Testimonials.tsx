@@ -271,7 +271,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: any; index: numb
           
           {/* Optional Image */}
           {testimonial.image && (
-            <div className="w-full h-80 mb-5 rounded-xl overflow-hidden relative">
+            <div className="w-full h-48 sm:h-56 mb-5 rounded-xl overflow-hidden relative shrink-0">
               <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover object-top" />
               <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
             </div>
