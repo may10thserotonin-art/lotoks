@@ -253,6 +253,9 @@ const featuredTestimonials = testimonials.slice(0, 3);
 
 // Testimonial Card Component
 function TestimonialCard({ testimonial, index }: { testimonial: any; index: number }) {
+  const [expanded, setExpanded] = useState(false);
+  const isLongQuote = testimonial.quote.length > 200;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -268,7 +271,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: any; index: numb
           
           {/* Optional Image */}
           {testimonial.image && (
-            <div className="w-full h-56 mb-5 rounded-xl overflow-hidden relative">
+            <div className="w-full h-80 mb-5 rounded-xl overflow-hidden relative">
               <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover object-top" />
               <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
             </div>
@@ -290,14 +293,24 @@ function TestimonialCard({ testimonial, index }: { testimonial: any; index: numb
           </div>
           
           {/* Quote */}
-          <p className="text-white/80 mb-6 italic text-lg leading-relaxed">
-            "{testimonial.quote}"
-          </p>
+          <div className="mb-6">
+            <p className={`text-white/80 italic text-lg leading-relaxed transition-all duration-300 ${!expanded && isLongQuote ? 'line-clamp-4' : ''}`}>
+              "{testimonial.quote}"
+            </p>
+            {isLongQuote && (
+              <button 
+                onClick={() => setExpanded(!expanded)}
+                className="text-gold text-sm font-semibold mt-2 hover:underline focus:outline-none"
+              >
+                {expanded ? "Read less" : "Read more"}
+              </button>
+            )}
+          </div>
         </div>
         
         {/* Author */}
         <div className="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
-          <div className="w-14 h-14 rounded-full bg-gold/20 flex items-center justify-center text-2xl shadow-inner select-none">
+          <div className="w-14 h-14 rounded-full bg-gold/20 flex items-center justify-center text-2xl shadow-inner select-none shrink-0">
             {testimonial.flag}
           </div>
           <div>
