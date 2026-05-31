@@ -343,7 +343,7 @@ export function SectionHeading({ title, subtitle, align = 'center', lightText = 
         {title}
       </h2>
       {subtitle && (
-        <p className={`text-lg max-w-2xl mx-auto ${lightText ? 'text-white/70' : 'text-navy/70'}`}>
+        <p className={`text-lg max-w-2xl mx-auto ${lightText ? 'text-white' : 'text-navy/70'}`}>
           {subtitle}
         </p>
       )}

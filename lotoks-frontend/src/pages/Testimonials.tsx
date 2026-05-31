@@ -59,9 +59,9 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Jonathan Kabeza",
-    country: "Poland (via Rwanda)",
-    flag: "🇵🇱",
+    name: "Tanaka",
+    country: "Capetown South Africa",
+    flag: "🇿🇦",
     type: "education",
     typeLabel: "Education Scholarship",
     quote: "I am officially a graduate! Lotoks helped me secure my university admission and guided me through a flawless visa application. Highly recommend their services.",
@@ -458,6 +458,7 @@ function VisaGallery({ onViewImage }: { onViewImage: (src: string, title: string
       <SectionHeading 
         title="Verified Consular & PR Approvals"
         subtitle="Complete honesty and transparency. Review actual, verified Permanent Resident (PR) cards, job offer approvals, and visas granted to our professional candidates."
+        lightText={true}
       />
 
       {/* Gallery Filter buttons */}
@@ -483,6 +484,18 @@ function VisaGallery({ onViewImage }: { onViewImage: (src: string, title: string
           </button>
         ))}
       </div>
+
+      {/* Truck Drivers Testing Section */}
+      {filteredProofs.some(p => p.image.includes("Truck-drivers")) && (
+        <div className="mb-6">
+          <h3 className="text-2xl font-heading font-bold text-gold mb-2">
+            Testing Of Truck Drivers In Zimbabwe
+          </h3>
+          <p className="text-white/60 text-sm max-w-3xl">
+            Professional truck driver assessment and certification processes for skilled transportation roles across African routes.
+          </p>
+        </div>
+      )}
 
       {/* Grid gallery */}
       <motion.div 
