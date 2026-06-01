@@ -28,9 +28,9 @@ const steps = [
     id: 2,
     question: "What is your current age group?",
     options: [
-      { label: "18 â€“ 24", value: "young" },
-      { label: "25 â€“ 34", value: "prime" },
-      { label: "35 â€“ 44", value: "mature" },
+      { label: "18 - 24", value: "young" },
+      { label: "25 - 34", value: "prime" },
+      { label: "35 - 44", value: "mature" },
       { label: "45+", value: "senior" }
     ]
   },

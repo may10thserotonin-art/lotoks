@@ -11,7 +11,6 @@ import {
   Eye,
   Download,
   Calendar,
-  ShieldCheck,
   CheckCircle2,
   FileCheck
 } from "lucide-react";
@@ -46,19 +45,31 @@ const testimonials = [
   },
   {
     id: 1,
-    name: "Aline Mwiza",
-    country: "Poland (via Rwanda)",
-    flag: "🇵🇱",
+    name: "Brian",
+    country: "Poland (via Zimbabwe)",
+    flag: "🇿🇼",
     type: "education",
-    typeLabel: "Education Visa & Degree",
-    quote: "So happy to share my graduation moment! Lotoks supported me from my application, throughout the visa process, all the way to my graduation day. They are truly the best agency!",
+    typeLabel: "Computer Science Major (Mobile Software Engineering)",
+    quote: "My name is Brian, and I have been in Poland studying computer science with a major in mobile software engineering. I had a great experience working with Lotoks Consulting. From the beginning, they guided me through the entire study abroad process in a professional and supportive way. They helped me with the application for the course at Uniwersytet WSB Merito in Poznań, assisted me with visa applications, and also helped with travelling arrangements and itinerary planning. Their communication was clear, and they were always available whenever I had questions or needed assistance. Thanks to their guidance, the process became much easier and less stressful. I highly recommend Lotoks Consulting to anyone looking for assistance with studying abroad, as it went very well for me.",
+    rating: 5,
+    hasVideo: false,
+    image: "/ugc-testimonials/Brian-Testimonials/Brian.jpeg",
+  },
+  {
+    id: 2,
+    name: "Rethabile Nyathi",
+    country: "Poland (via South Africa)",
+    flag: "🇿🇦",
+    type: "education",
+    typeLabel: "Study Abroad (Poland)",
+    quote: "Thanks to the dedicated support of Lotoks Consulting, I am now pursuing my education in Poland—a dream I once thought was out of reach. Their team guided me through each stage with professionalism and genuine care. Their partnership with trusted institutions like UITM – University of Information Technology and Management in Rzeszów, Poland, gave me confidence that I was applying to a legitimate and high-quality program. I am deeply grateful to the Lotoks team for making my study abroad journey possible.",
     rating: 5,
     hasVideo: true,
     videoUrl: "/ugc-testimonials/Graduating-videos/WhatsApp Video 2026-05-29 at 00.16.02.mp4",
     poster: "/ugc-testimonials/Graduation-photos/WhatsApp Image 2026-05-29 at 00.16.02.jpeg",
   },
   {
-    id: 2,
+    id: 3,
     name: "Tanaka",
     country: "Capetown South Africa",
     flag: "🇿🇦",
@@ -68,181 +79,130 @@ const testimonials = [
     rating: 5,
     hasVideo: true,
     videoUrl: "/ugc-testimonials/Graduating-videos/WhatsApp Video 2026-05-29 at 00.54.33.mp4",
-    poster: "/ugc-testimonials/Graduation-photos/WhatsApp Image 2026-05-29 at 00.54.29.jpeg",
-  },
-  {
-    id: 3,
-    name: "Emmanuel Nkurunziza",
-    country: "Poland (via Rwanda)",
-    flag: "🇵🇱",
-    type: "education",
-    typeLabel: "University Graduation",
-    quote: "Holding my university degree is a dream come true. Thank you to the entire Lotoks team for helping me get admitted and visa sponsored. You changed my life!",
-    rating: 5,
-    hasVideo: true,
-    videoUrl: "/ugc-testimonials/Graduating-videos/WhatsApp Video 2026-05-29 at 00.55.45.mp4",
-    poster: "/ugc-testimonials/Graduation-photos/WhatsApp Image 2026-05-29 at 00.54.34.jpeg",
+    poster: "/ugc-testimonials/Graduation-photos/tanaka.jpeg",
   },
   {
     id: 4,
-    name: "David Ochieng",
-    country: "Poland (via Kenya)",
-    flag: "🇵🇱",
-    type: "visa",
-    typeLabel: "Work Visa Sponsorship",
-    quote: "My work permit visa was successfully approved! Lotoks handled all the paperwork and connected me with my current employer. Their team is extremely professional and transparent.",
+    name: "Clyde",
+    country: "Poland (via Zimbabwe)",
+    flag: "🇿🇼",
+    type: "education",
+    typeLabel: "Student Visa Success",
+    quote: "I'm Clyde from Bulawayo, Zimbabwe. I want to thank Lotoks Consulting for the incredible support they gave me throughout my study abroad journey. From helping with my application to securing my visa and even arranging my travel, every step was handled with care and professionalism. They made my dream of studying in Poland a reality. If you're looking for a trustworthy partner to guide you abroad, Lotoks is the real deal. I highly recommend them!",
     rating: 5,
     hasVideo: true,
-    videoUrl: "/ugc-testimonials/ugc-testimonias-video/WhatsApp Video 2026-05-28 at 22.19.20.mp4",
-    poster: "/ugc-testimonials/Graduation-photos/a338a2c3-23fa-4588-ae92-fec3bbb1c0c8.jfif",
+    videoUrl: "/ugc-testimonials/ugc-testimonias-video/clyde.mp4",
   },
   {
     id: 5,
-    name: "Sarah Chen",
-    country: "Singapore",
-    flag: "🇸🇬",
+    name: "Adolf Hlungwani",
+    country: "Lithuania (via South Africa)",
+    flag: "🇿🇦",
     type: "visa",
-    typeLabel: "Visa Sponsorship",
-    quote: "Lotoks made my dream of working in Europe a reality. The process was smooth and transparent, and I felt supported every step of the way. Now I'm living my best life in Germany!",
+    typeLabel: "Truck Driver (Lithuania)",
+    quote: "I'm Adolf Hlungwani, a truck driver based in Lithuania originally from South Africa. I want to thank Lotoks Consulting for helping me secure this incredible opportunity abroad. They connected me with a reputable transport company in Lithuania and handled all the paperwork, visa processing, and logistical arrangements professionally. Their team made the entire relocation process smooth and stress-free. Thanks to their support, I'm now driving international routes across Europe and building a better future for myself and my family. If you're a skilled driver looking for overseas opportunities, I highly recommend reaching out to Lotoks — they deliver results!",
     rating: 5,
-    hasVideo: false,
+    hasVideo: true,
+    videoUrl: "/ugc-testimonials/Truck-drivers/truck-testimonial.mp4",
   },
   {
     id: 6,
-    name: "Amara Okonkwo",
-    country: "Nigeria",
-    flag: "🇳🇬",
-    type: "jobs",
-    typeLabel: "Job Placement",
-    quote: "Found a tech job in Germany with full sponsorship. Best decision I ever made. The matching algorithm really understands what employers are looking for.",
+    name: "Confirm Mpofu",
+    country: "Lithuania",
+    flag: "🇱🇹",
+    type: "residence",
+    typeLabel: "Lithuania TRP",
+    quote: "SUCCESS ALERT! I am thrilled to announce that I have obtained my 2-Year Lithuania Temporary Residence Permit (TRP). Another dream achieved with the support of LOTOKS Consulting Agency. I am honored to have been guided through this journey and I wish myself all the best as I begin this exciting new chapter in Lithuania. Your journey starts with a single step. Let LOTOKS Consulting Agency guide the way.",
     rating: 5,
-    hasVideo: false,
+    hasVideo: true,
+    poster: "/ugc-testimonials/Truck-drivers/2-Year Lithuania Temporary Residence Permit (TRP).png",
   },
   {
     id: 7,
-    name: "Yuki Tanaka",
-    country: "Japan",
-    flag: "🇯🇵",
+    name: "Khawuleza Ngwenya",
+    country: "Lithuania (via Zimbabwe)",
+    flag: "🇿🇼",
     type: "visa",
-    typeLabel: "Visa Sponsorship",
-    quote: "The support team was incredible. They helped me navigate the complex visa requirements and now I'm working at my dream company in London.",
+    typeLabel: "Truck Driver (Lithuania)",
+    quote: "I'm Khawuleza Ngwenya from Zimbabwe, currently working as a truck driver in Lithuania. Thanks to LOTOKS Consulting Agency, I was able to secure this life-changing opportunity abroad. They handled everything from the paperwork to the placement, making the entire process smooth and stress-free. I'm now driving across Europe and building a better future. If you're looking for genuine assistance to work overseas, I highly recommend LOTOKS!",
     rating: 5,
-    hasVideo: false,
+    hasVideo: true,
+    poster: "/ugc-testimonials/Truck-drivers/litua.png",
   },
-  {
-    id: 8,
-    name: "Priya Sharma",
-    country: "India",
-    flag: "🇮🇳",
-    type: "residence",
-    typeLabel: "Permanent Residence",
-    quote: "The residence pathway program was exactly what I needed. Now I have permanent residency in Canada and my family can join me.",
-    rating: 5,
-    hasVideo: false,
-  },
-  {
-    id: 9,
-    name: "Fatima Al-Hassan",
-    country: "UAE",
-    flag: "🇦🇪",
-    type: "visa",
-    typeLabel: "Visa Sponsorship",
-    quote: "Got sponsored for a healthcare position in the UK. The verification process for my credentials was handled perfectly.",
-    rating: 5,
-    hasVideo: false,
-  },
+
 ];
 
-// Verified Visa approvals gathered from the truck-drivers and legal paths
-const visaProofs = [
+// Verified Visa approvals gathered from the truck-drivers folder
+const truckDriverProofs = [
   {
     id: 1,
-    title: "Permanent Residence Certificate",
-    category: "residence",
-    image: "/ugc-testimonials/Truck-drivers/Parmanent resident.jpg",
-    description: "Official Permanent Residence (PR) confirmation approval issued for a commercial heavy transport candidate.",
-  },
-  {
-    id: 2,
     title: "Skilled Driver Visa Confirmation",
-    category: "visa",
     image: "/ugc-testimonials/Truck-drivers/WhatsApp Image 2026-05-29 at 00.05.50.jpeg",
     description: "Successful Work Visa Grant and Passport Stamp package verifying European relocation path.",
   },
   {
-    id: 3,
+    id: 2,
     title: "Federal Skilled Entry Approval",
-    category: "residence",
     image: "/ugc-testimonials/Truck-drivers/WhatsApp Image 2026-05-29 at 00.07.53.jpeg",
     description: "Federal Skilled Worker Invitation to Apply (ITA) letter with official consular registration seals.",
   },
   {
-    id: 4,
+    id: 3,
     title: "LMIA positive Assessment Letter",
-    category: "jobs",
     image: "/ugc-testimonials/Truck-drivers/WhatsApp Image 2026-05-29 at 00.07.54.jpeg",
     description: "Labour Market Impact Assessment (LMIA) positive decision confirming the positive job recruitment clearance.",
   },
   {
-    id: 5,
+    id: 4,
     title: "Employment Visa Grant Stamp",
-    category: "visa",
     image: "/ugc-testimonials/Truck-drivers/WhatsApp Image 2026-05-29 at 00.07.54 (1).jpeg",
     description: "Visa grant document confirming high-skilled commercial driver employment authorization.",
   },
   {
-    id: 6,
+    id: 5,
     title: "Schengen Visa Residence Seal",
-    category: "residence",
     image: "/ugc-testimonials/Truck-drivers/WhatsApp Image 2026-05-29 at 00.07.55.jpeg",
     description: "Passport copy displaying the official border agency temporary resident clearance permit.",
   },
   {
-    id: 7,
+    id: 6,
     title: "Sponsorship Allocation Confirmation",
-    category: "visa",
     image: "/ugc-testimonials/Truck-drivers/WhatsApp Image 2026-05-29 at 00.07.55 (2).jpeg",
     description: "Direct logistics corporation employer allocation clearance confirming sponsorship certificate.",
   },
   {
-    id: 8,
+    id: 7,
     title: "Logistics Skilled Class Visa",
-    category: "visa",
     image: "/ugc-testimonials/Truck-drivers/WhatsApp Image 2026-05-29 at 00.07.56.jpeg",
     description: "Official consulate entry visa foil stamped in the applicant passport enabling skilled work.",
   },
   {
-    id: 9,
+    id: 8,
     title: "Consular Application Receipt",
-    category: "residence",
     image: "/ugc-testimonials/Truck-drivers/WhatsApp Image 2026-05-29 at 00.07.56 (1).jpeg",
     description: "Verified biometric file confirmation and official case registration receipt from immigration services.",
   },
   {
-    id: 10,
+    id: 9,
     title: "Corporate Work Placement Contract",
-    category: "jobs",
     image: "/ugc-testimonials/Truck-drivers/WhatsApp Image 2026-05-29 at 00.50.24.jpeg",
     description: "Verified employment contract signed by European logistics enterprise sponsoring class 1 drivers.",
   },
   {
-    id: 11,
+    id: 10,
     title: "Professional Driver Work Stamp",
-    category: "visa",
     image: "/ugc-testimonials/Truck-drivers/WhatsApp Image 2026-05-29 at 00.50.24 (1).jpeg",
     description: "Verified transport authority work authorization certificate enabling heavy machinery logistics operations.",
   },
   {
-    id: 12,
+    id: 11,
     title: "EU Biometric Residence Permit",
-    category: "residence",
     image: "/ugc-testimonials/Truck-drivers/WhatsApp Image 2026-05-29 at 00.50.24 (2).jpeg",
     description: "Official biometric temporary residence permit card confirming local residency status.",
   },
   {
-    id: 13,
+    id: 12,
     title: "Travel Visa stamp & Border Clearance",
-    category: "visa",
     image: "/ugc-testimonials/Truck-drivers/WhatsApp Image 2026-05-29 at 00.50.25 (1).jpeg",
     description: "Border control confirmation stamp on official visa sheet validating legal employment arrival.",
   }
@@ -355,6 +315,7 @@ function FeaturedSection() {
       <SectionHeading 
         title="Success Stories"
         subtitle="Real experiences from real people who transformed their lives"
+        lightText
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -371,69 +332,133 @@ function VideoTestimonials({ onPlayVideo }: { onPlayVideo: (url: string) => void
   const videoTestimonials = testimonials.filter(t => t.hasVideo);
   
   return (
-    <SectionWrapper className="bg-gradient-to-b from-white to-surface">
+    <SectionWrapper className="bg-gradient-to-b from-white to-surface relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute top-40 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 left-0 w-[400px] h-[400px] bg-teal/5 rounded-full blur-3xl pointer-events-none" />
+
       <SectionHeading 
-        title="Real Video Testimonials"
+        title="Testimonials"
         subtitle="Hear and see directly from our successful graduates and sponsored candidates"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {videoTestimonials.map((testimonial, index) => (
           <motion.div
             key={testimonial.id}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            className="group cursor-pointer flex flex-col h-full"
+            transition={{ delay: index * 0.12 }}
+            className={`group flex flex-col h-full ${testimonial.videoUrl ? 'cursor-pointer' : ''}`}
             onClick={() => testimonial.videoUrl && onPlayVideo(testimonial.videoUrl)}
           >
-            <ElevatedCard className="p-0 overflow-hidden flex flex-col h-full bg-white border border-navy/5 shadow-md hover:shadow-xl hover:border-gold/40 transition-all duration-300">
-              {/* Video thumbnail and Play trigger */}
-              <div className="relative aspect-[4/3] bg-black overflow-hidden flex items-center justify-center">
+            <div className="relative flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-navy/5 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-500">
+              {/* Video thumbnail with cinematic overlay */}
+              <div className="relative aspect-[4/3] bg-gradient-to-br from-navy/90 to-navy overflow-hidden">
                 {testimonial.poster ? (
-                  <img 
-                    src={testimonial.poster}
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                  <>
+                    <img 
+                      src={testimonial.poster}
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    {/* Multi-layer gradient overlay for cinematic look */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </>
                 ) : (
                   <div className="absolute inset-0 bg-gradient-to-br from-navy to-navy/80" />
                 )}
-                {/* Play button overlay with modern ripple scale */}
-                <div className="absolute inset-0 bg-navy/30 flex items-center justify-center group-hover:bg-navy/50 transition-colors duration-300">
-                  <motion.div 
-                    className="w-14 h-14 rounded-full bg-[#b7974a] text-white flex items-center justify-center shadow-lg border border-white/20"
-                    whileHover={{ scale: 1.15 }}
-                  >
-                    <Play className="w-5 h-5 text-navy fill-navy ml-0.5" />
-                  </motion.div>
+                
+                {/* Premium Play / View button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {testimonial.videoUrl ? (
+                    <motion.div 
+                      className="relative"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {/* Outer ring glow */}
+                      <div className="absolute inset-0 rounded-full bg-gold/30 blur-md animate-pulse" />
+                      {/* Button */}
+                      <div className="relative w-16 h-16 rounded-full bg-gold text-navy flex items-center justify-center shadow-xl border-2 border-white/30 transition-shadow duration-300 group-hover:shadow-gold/50">
+                        <Play className="w-6 h-6 ml-0.5 fill-navy" />
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div 
+                      className="relative"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <div className="relative w-16 h-16 rounded-full bg-white/20 text-white flex items-center justify-center shadow-xl border-2 border-white/40 backdrop-blur-sm transition-shadow duration-300 group-hover:bg-white/30">
+                        <Eye className="w-6 h-6" />
+                      </div>
+                    </motion.div>
+                  )}
                 </div>
-                {/* Duration Badge / Video indicator */}
-                <span className="absolute bottom-3 right-3 text-xs bg-navy/80 text-white font-medium px-2 py-0.5 rounded backdrop-blur-sm">
-                  UGC Video
-                </span>
+
+                {/* Top gradient edge accent */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold/0 via-gold to-gold/0" />
+                
+                {/* Bottom metadata bar */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-0.5">
+                      {[...Array(5)].map((_, i) => (
+                        <Star 
+                          key={i} 
+                          className={`w-3 h-3 ${i < testimonial.rating ? 'text-gold fill-gold' : 'text-white/30'}`} 
+                        />
+                      ))}
+                    </div>
+                    <span className="ml-auto text-[10px] font-bold text-white/80 bg-white/10 px-2 py-0.5 rounded-full backdrop-blur-sm tracking-wide">
+                      {testimonial.videoUrl ? 'Video Story' : 'Success Story'}
+                    </span>
+                  </div>
+                </div>
               </div>
               
-              {/* Content */}
-              <div className="p-5 flex flex-col flex-1 justify-between">
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xl select-none">{testimonial.flag}</span>
-                    <div>
-                      <div className="font-extrabold text-navy text-base leading-tight">{testimonial.name}</div>
-                      <div className="text-navy/50 text-xs font-semibold">{testimonial.country}</div>
+              {/* Content area with glassmorphism */}
+              <div className="relative flex flex-col flex-1 p-5 bg-white">
+                {/* Subtle top border accent */}
+                <div className="absolute top-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+                
+                {/* Author info */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-gold to-gold/70 flex items-center justify-center text-base shadow-md shrink-0">
+                    {testimonial.flag}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="font-bold text-navy text-base leading-tight truncate">{testimonial.name}</div>
+                    <div className="flex items-center gap-1.5 text-navy/50 text-xs font-medium">
+                      <Globe className="w-3 h-3" />
+                      {testimonial.country}
                     </div>
                   </div>
-                  <p className="text-navy/70 text-sm italic leading-relaxed mb-4 line-clamp-3">
+                </div>
+
+                {/* Quote with decorative mark */}
+                <div className="relative flex-1">
+                  <Quote className="absolute -top-1 -left-1 w-6 h-6 text-gold/15" />
+                  <p className="text-navy/70 text-sm leading-relaxed line-clamp-3 pl-4 italic">
                     "{testimonial.quote}"
                   </p>
                 </div>
-                <div className="inline-flex self-start text-[11px] font-bold text-[#b7974a] bg-[#b7974a]/10 border border-[#b7974a]/20 px-2 py-0.5 rounded-full">
-                  {testimonial.typeLabel}
+
+                {/* Bottom section */}
+                <div className="flex items-center justify-between mt-5 pt-4 border-t border-navy/5">
+                  <span className="text-[11px] font-bold text-gold bg-gold/10 px-3 py-1 rounded-full tracking-wide">
+                    {testimonial.typeLabel}
+                  </span>
+                  <span className="text-[11px] font-semibold text-navy/40 flex items-center gap-1.5 group-hover:text-gold transition-colors duration-300">
+                    {testimonial.videoUrl ? 'Watch Video' : 'View Story'}
+                    {testimonial.videoUrl ? <Play className="w-3 h-3 fill-current" /> : <Eye className="w-3 h-3" />}
+                  </span>
                 </div>
               </div>
-            </ElevatedCard>
+            </div>
           </motion.div>
         ))}
       </div>
@@ -441,61 +466,22 @@ function VideoTestimonials({ onPlayVideo }: { onPlayVideo: (url: string) => void
   );
 }
 
-// Interactive Visa and PR Gallery for Genuine Success proof (from ugc-testimonials/Truck-drivers)
-function VisaGallery({ onViewImage }: { onViewImage: (src: string, title: string, desc: string) => void }) {
-  const [galleryFilter, setGalleryFilter] = useState("all");
-  
-  const filteredProofs = galleryFilter === "all"
-    ? visaProofs
-    : visaProofs.filter(p => p.category === galleryFilter);
-
+// Truck Drivers Gallery (from ugc-testimonials/Truck-drivers)
+function TruckDriversGallery({ onViewImage }: { onViewImage: (src: string, title: string, desc: string) => void }) {
   return (
     <SectionWrapper className="bg-navy relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#b7974a]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-teal/5 rounded-full blur-3xl pointer-events-none" />
 
-      <SectionHeading 
-        title="Verified Consular & PR Approvals"
-        subtitle="Complete honesty and transparency. Review actual, verified Permanent Resident (PR) cards, job offer approvals, and visas granted to our professional candidates."
-        lightText={true}
-      />
-
-      {/* Gallery Filter buttons */}
-      <div className="flex flex-wrap gap-2.5 justify-center mb-10">
-        {[
-          { id: "all", label: "All Documents" },
-          { id: "visa", label: "Visa Stamping" },
-          { id: "residence", label: "Permanent Residence" },
-          { id: "jobs", label: "Employment Approvals" },
-        ].map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setGalleryFilter(tab.id)}
-            className={`
-              px-5 py-2 rounded-xl text-xs font-bold transition-all border
-              ${galleryFilter === tab.id
-                ? 'bg-[#b7974a] text-navy border-transparent shadow-md'
-                : 'bg-white/5 text-white/70 border-white/10 hover:border-white/30 hover:text-white'
-              }
-            `}
-          >
-            {tab.label}
-          </button>
-        ))}
+      <div className="mb-10">
+        <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          Testing Of Truck Drivers In <span className="text-gold">Zimbabwe</span>
+        </h2>
+        <p className="text-white/60 text-base max-w-3xl">
+          Professional truck driver assessment and certification processes for skilled transportation roles across African routes. Review verified documents from our candidates.
+        </p>
       </div>
-
-      {/* Truck Drivers Testing Section */}
-      {filteredProofs.some(p => p.image.includes("Truck-drivers")) && (
-        <div className="mb-6">
-          <h3 className="text-2xl font-heading font-bold text-gold mb-2">
-            Testing Of Truck Drivers In Zimbabwe
-          </h3>
-          <p className="text-white/60 text-sm max-w-3xl">
-            Professional truck driver assessment and certification processes for skilled transportation roles across African routes.
-          </p>
-        </div>
-      )}
 
       {/* Grid gallery */}
       <motion.div 
@@ -503,7 +489,7 @@ function VisaGallery({ onViewImage }: { onViewImage: (src: string, title: string
         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
       >
         <AnimatePresence mode="popLayout">
-          {filteredProofs.map((proof) => (
+          {truckDriverProofs.map((proof) => (
             <motion.div
               key={proof.id}
               layout
@@ -515,32 +501,19 @@ function VisaGallery({ onViewImage }: { onViewImage: (src: string, title: string
               className="group cursor-pointer relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-2 transition-all duration-300 hover:border-[#b7974a]/40"
               onClick={() => onViewImage(proof.image, proof.title, proof.description)}
             >
-              {/* Image backdrop */}
+              {/* Image */}
               <div className="relative aspect-[3/4] bg-navy-dark overflow-hidden rounded-lg">
                 <img 
                   src={proof.image} 
                   alt={proof.title}
-                  className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
                 />
                 
-                {/* Hover overlay details */}
-                <div className="absolute inset-0 bg-navy/80 opacity-0 group-hover:opacity-100 flex flex-col justify-end p-4 transition-all duration-300">
-                  <div className="w-8 h-8 rounded-full bg-[#b7974a] flex items-center justify-center mb-3 shadow-md text-navy">
-                    <Eye className="w-4 h-4" />
+                {/* Hover overlay — Eye icon only */}
+                <div className="absolute inset-0 bg-navy/70 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+                  <div className="w-12 h-12 rounded-full bg-[#b7974a] flex items-center justify-center shadow-lg text-navy">
+                    <Eye className="w-5 h-5" />
                   </div>
-                  <h4 className="text-white font-bold text-sm leading-snug mb-1">{proof.title}</h4>
-                  <p className="text-white/60 text-[11px] leading-normal line-clamp-2">{proof.description}</p>
-                </div>
-              </div>
-              
-              {/* Card Bottom Tag */}
-              <div className="p-3">
-                <h4 className="text-white font-bold text-xs leading-tight mb-1 truncate">{proof.title}</h4>
-                <div className="flex items-center justify-between mt-2">
-                  <span className="text-[10px] text-[#b7974a] font-bold uppercase tracking-wider">
-                    {proof.category}
-                  </span>
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#b7974a]" />
                 </div>
               </div>
             </motion.div>
@@ -591,6 +564,148 @@ function TestimonialsGrid() {
         </AnimatePresence>
       </motion.div>
     </SectionWrapper>
+  );
+}
+
+// Our Gallery Section
+const galleryImages = [
+  {
+    src: "/Gallery/After a long search of jobs in luxembourg.jpeg",
+    title: "After a long search of jobs in Luxembourg",
+  },
+  {
+    src: "/Gallery/after a successful collaboration in warsaw poland.jpeg",
+    title: "Successful Collaboration in Warsaw, Poland",
+  },
+  {
+    src: "/Gallery/Another collaboration.jpeg",
+    title: "Another Successful Collaboration",
+  },
+  {
+    src: "/Gallery/OLD TOWN in warsaw.jpeg",
+    title: "Old Town, Warsaw",
+  },
+  {
+    src: "/Gallery/Poland.jpeg",
+    title: "Poland",
+  },
+  {
+    src: "/Gallery/visiting a company that I had a contract with poland.jpeg",
+    title: "Partner in Poland for trucking company",
+  },
+];
+
+function OurGallery() {
+  const [activeGalleryImage, setActiveGalleryImage] = useState<string | null>(null);
+
+  return (
+    <>
+      <SectionWrapper className="bg-gradient-to-b from-white to-surface relative overflow-hidden">
+        {/* Ambient background accents */}
+        <div className="absolute top-20 left-0 w-[400px] h-[400px] bg-gold/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-20 right-0 w-[500px] h-[500px] bg-teal/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="text-center mb-14">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-on-surface mb-4">
+            Our <span className="text-gold">Gallery</span>
+          </h2>
+          <p className="text-on-surface-variant text-base max-w-2xl mx-auto font-medium">
+            Real moments captured across Europe — from successful collaborations to life-changing milestones
+          </p>
+        </div>
+
+        {/* Uniform Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {galleryImages.map((img, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group cursor-pointer"
+              onClick={() => setActiveGalleryImage(img.src)}
+            >
+              <div className="relative bg-white rounded-xl overflow-hidden border border-navy/5 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500">
+                {/* Image container with fixed aspect ratio */}
+                <div className="relative aspect-[4/3] overflow-hidden bg-navy">
+                  <img
+                    src={img.src}
+                    alt={img.title}
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                  />
+                  
+                  {/* Overlay gradients */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* View button on hover */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <motion.div
+                      initial={{ scale: 0.8 }}
+                      whileInView={{ scale: 1 }}
+                      className="w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg text-navy"
+                    >
+                      <Eye className="w-5 h-5" />
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Bottom content strip */}
+                <div className="p-4 flex items-center justify-between gap-3">
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[10px] font-bold text-gold uppercase tracking-widest block mb-1">
+                      Gallery • {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h4 className="font-bold text-navy text-sm leading-snug truncate">
+                      {img.title}
+                    </h4>
+                  </div>
+                  <div className="w-9 h-9 rounded-full bg-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-colors duration-300">
+                    <ArrowRight className="w-4 h-4 text-gold" />
+                  </div>
+                </div>
+
+                {/* Bottom gold accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-gold/0 via-gold/50 to-gold/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* Gallery Lightbox Modal */}
+      <AnimatePresence>
+        {activeGalleryImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy/95 backdrop-blur-lg"
+            onClick={() => setActiveGalleryImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-5xl max-h-[90vh] w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={activeGalleryImage}
+                alt="Gallery photo"
+                className="w-full h-full object-contain rounded-2xl shadow-2xl"
+              />
+              <button
+                onClick={() => setActiveGalleryImage(null)}
+                className="absolute -top-12 right-0 text-white/60 hover:text-white transition-colors"
+              >
+                <X className="w-8 h-8" />
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -705,8 +820,11 @@ export default function TestimonialsPage() {
       {/* Featured Testimonials */}
       <FeaturedSection />
 
-      {/* Verified Visa & Permanent Resident proof documents */}
-      <VisaGallery onViewImage={(src, title, desc) => setActiveImage({ src, title, desc })} />
+      {/* Truck Drivers Testing Gallery */}
+      <TruckDriversGallery onViewImage={(src, title, desc) => setActiveImage({ src, title, desc })} />
+
+      {/* Our Gallery */}
+      <OurGallery />
 
       {/* Statistics */}
       <StatsSection />

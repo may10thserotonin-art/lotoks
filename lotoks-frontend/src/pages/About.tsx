@@ -284,6 +284,7 @@ function ValuesSection() {
       <SectionHeading 
         title="Our Values"
         subtitle="The principles that guide everything we do"
+        lightText
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
