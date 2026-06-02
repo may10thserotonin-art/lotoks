@@ -162,8 +162,8 @@ export function StatCard({
       `}
       {...props}
     >
-      <div className="text-4xl md:text-5xl font-bold text-gold mb-2">
-        {number}{suffix && <span className="text-2xl">{suffix}</span>}
+      <div className="text-2xl md:text-3xl font-bold text-gold mb-2 min-h-[2.5rem] flex items-center justify-center">
+        {number}{suffix && <span className="text-lg md:text-xl ml-1">{suffix}</span>}
       </div>
       <div className="text-navy/70 font-medium">{label}</div>
     </motion.div>

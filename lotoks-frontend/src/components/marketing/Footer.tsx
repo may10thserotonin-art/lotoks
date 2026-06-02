@@ -49,7 +49,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 group mb-6">
               <motion.div
-                className="w-12 h-12 rounded-xl overflow-hidden"
+                className="w-14 h-14 rounded-xl overflow-hidden"
                 whileHover={{ scale: 1.05 }}
               >
                 <img 

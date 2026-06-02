@@ -78,8 +78,6 @@ const testimonials = [
     quote: "I am officially a graduate! Lotoks helped me secure my university admission and guided me through a flawless visa application. Highly recommend their services.",
     rating: 5,
     hasVideo: true,
-    videoUrl: "/ugc-testimonials/Graduating-videos/WhatsApp Video 2026-05-29 at 00.54.33.mp4",
-    poster: "/ugc-testimonials/Graduation-photos/tanaka.jpeg",
   },
   {
     id: 4,
@@ -130,6 +128,30 @@ const testimonials = [
     poster: "/ugc-testimonials/Truck-drivers/litua.png",
   },
 
+  {
+    id: 8,
+    name: "Ruvarashe Vanessa Mashange",
+    country: "South Africa",
+    flag: "🇿🇦",
+    type: "success",
+    typeLabel: "Success Story",
+    quote: "My journey with Lotoks Consulting has been nothing short of amazing. Their team provided exceptional support and guidance throughout the entire process. I am truly grateful for their professionalism and dedication.",
+    rating: 5,
+    hasVideo: true,
+    videoUrl: "/Ruvarashe-Vanessa-Mashange-video/ruvarashe-vanessa-mashange.mp4",
+  },
+  {
+    id: 9,
+    name: "Qhibekani Ngwenya",
+    country: "United Kingdom",
+    flag: "🇬🇧",
+    type: "work",
+    typeLabel: "Health-Care Worker (UK)",
+    quote: "I want to thank Lotoks Consulting Agency through their help I am able to work as a health-care worker in the UK.",
+    rating: 5,
+    hasVideo: true,
+    poster: "/Care-worker/Qhibekani Ngwenya.png",
+  },
 ];
 
 // Verified Visa approvals gathered from the truck-drivers folder

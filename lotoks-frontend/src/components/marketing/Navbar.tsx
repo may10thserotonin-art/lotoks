@@ -61,7 +61,7 @@ export function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <motion.div
-              className="w-10 h-10 rounded-xl overflow-hidden"
+              className="w-12 h-12 rounded-xl overflow-hidden"
               whileHover={{ scale: 1.05 }}
             >
               <img 

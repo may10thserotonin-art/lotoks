@@ -137,10 +137,10 @@ const testimonialsPreview = [
 
 // Stats for the homepage
 const stats = [
-  { number: 50000, suffix: "+", label: "Applications Processed" },
+  { number: 5000, suffix: "+", label: "Applications Processed" },
   { number: 98, suffix: "%", label: "Success Rate" },
   { number: 45, suffix: "+", label: "Partner Countries" },
-  { number: 14, suffix: " Days", label: "Average Processing" },
+  { number: 14, suffix: " Days", label: "Average Processing", customDisplay: "2-4 Months" },
 ];
 
 // Animated counter component
@@ -614,7 +614,7 @@ function StatsSection() {
               transition={{ delay: index * 0.1 }}
             >
               <StatCard 
-                number={<AnimatedCounter target={stat.number as number} suffix={stat.suffix} />}
+                number={stat.customDisplay ? stat.customDisplay : <AnimatedCounter target={stat.number as number} suffix={stat.suffix} />}
                 label={stat.label}
                 className="bg-white"
               />

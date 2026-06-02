@@ -80,7 +80,7 @@ const team = [
     name: "TR Ngwenya",
     role: "Founder & Global Recruitment Director",
     image: "/Team-members/Thobekile-Ruth-Ngwenya-ceo-lotoks.png",
-    bio: "Thobekile leads Lotoks with a visionary approach, integrating high-end technological innovations with robust operational strategies to shape the future of global enterprise solutions.",
+    bio: "She leads Lotoks with a visionary approach, integrating high-end technological innovations with robust operational strategies to shape the future of global enterprise solutions.",
   },
   {
     name: "R Veremu",
@@ -246,7 +246,8 @@ function MissionSection() {
                 "Federation of African Professional Staffing Organisations (APSO) Accredited",
                 "Verified sponsorship opportunities abroad",
                 "Transparent, ethical recruitment processes",
-                "Dedicated documentation & mobility guidance support"
+                "Dedicated documentation & mobility guidance support",
+                "Registration with the Department of Labour South Africa for local employment opportunities"
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-teal" />
