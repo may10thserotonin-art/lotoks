@@ -27,7 +27,7 @@ import { fadeUpVariant, staggerContainer, bounceVariant, pulseVariant } from "@/
 const partners = [
   {
     name: "Everest Educational Services",
-    logo: "/images/partners/everest-logo.png",
+    logo: "/Everest-logo/Everest.jpeg",
     description: "Your trusted partner for international education. Connecting students worldwide with top academic programs and expert guidance for study abroad.",
     website: "https://everestedu.ca/",
     tag: "Education Partner",
