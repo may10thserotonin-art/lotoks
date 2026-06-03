@@ -58,7 +58,7 @@ const testimonials = [
   {
     id: 2,
     name: "Rethabile Nyathi",
-    country: "Poland (via South Africa)",
+    country: "Poland",
     flag: "🇿🇦",
     type: "education",
     typeLabel: "Wsei University (Poland)",
@@ -71,7 +71,7 @@ const testimonials = [
   {
     id: 3,
     name: "Tanaka",
-    country: "Wsei University",
+    country: "Poland",
     flag: "🇿🇦",
     type: "education",
     typeLabel: "Education",
@@ -82,7 +82,7 @@ const testimonials = [
   {
     id: 4,
     name: "Clyde",
-    country: "Poland (via Zimbabwe)",
+    country: "Poland",
     flag: "🇿🇼",
     type: "education",
     typeLabel: "Student Visa Success",
@@ -94,7 +94,7 @@ const testimonials = [
   {
     id: 5,
     name: "Adolf Hlungwani",
-    country: "Lithuania (via South Africa)",
+    country: "Lithuania",
     flag: "🇿🇦",
     type: "visa",
     typeLabel: "Truck Driver (Lithuania)",
@@ -117,7 +117,7 @@ const testimonials = [
   {
     id: 7,
     name: "Khawuleza Ngwenya",
-    country: "Lithuania (via Zimbabwe)",
+    country: "Lithuania",
     flag: "🇿🇼",
     type: "visa",
     typeLabel: "Truck Driver (Lithuania)",
@@ -131,8 +131,8 @@ const testimonials = [
   {
     id: 8,
     name: "Ruvarashe Vanessa Mashange",
-    country: "South Africa",
-    flag: "🇿🇦",
+    country: "Poland",
+    flag: "🇵🇱",
     type: "success",
     typeLabel: "Success Story",
     quote: "My journey with Lotoks Consulting has been nothing short of amazing. Their team provided exceptional support and guidance throughout the entire process. I am truly grateful for their professionalism and dedication.",
@@ -142,7 +142,7 @@ const testimonials = [
   },
   {
     id: 9,
-    name: "Qhibekani Ngwenya",
+    name: "Qhubekani Ngwenya",
     country: "United Kingdom",
     flag: "🇬🇧",
     type: "work",
@@ -150,7 +150,7 @@ const testimonials = [
     quote: "I want to thank Lotoks Consulting Agency through their help I am able to work as a health-care worker in the UK.",
     rating: 5,
     hasVideo: true,
-    poster: "/Care-worker/Qhibekani Ngwenya.png",
+    poster: "/Care-worker/Qhubekani Ngwenya.png",
   },
 ];
 
