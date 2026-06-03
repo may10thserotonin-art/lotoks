@@ -358,10 +358,17 @@ export default function EligibilityPage() {
                   transition={{ delay: 0.6 }}
                   className="grid gap-3 w-full max-w-sm mt-4"
                 >
-                  <button className="w-full py-4 rounded-full bg-gradient-to-r from-primary to-primary/80 text-white font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 group">
-                    Continue to Application
+                  <a 
+                    href={`https://wa.me/48790733839?text=${encodeURIComponent(
+                      `Hi Lotoks! I just completed the eligibility check.%0a%0a${selectedGoal === "job" && selectedJob ? `Goal: Work Overseas%0aJob Category: ${selectedJob.label}%0a` : "Goal: Study Abroad%0a"}%0aI'd like to continue with my application. Please guide me on the next steps.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-4 rounded-full bg-gradient-to-r from-primary to-primary/80 text-white font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 group"
+                  >
+                    Continue on WhatsApp
                     <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </a>
                   <button onClick={() => { setIsFinished(false); setCurrentStep(0); setAnswers({}); setSelectedGoal(null); setShowJobs(false); }} className="text-xs font-bold text-outline-variant hover:text-primary py-2 transition-colors">
                     Retake Assessment
                   </button>
