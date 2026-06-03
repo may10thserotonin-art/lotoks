@@ -214,7 +214,7 @@ function HeroSection() {
         transition={{ repeat: Infinity, duration: 4 }}
       />
       
-      <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 text-center pt-20 md:pt-0">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
