@@ -37,8 +37,8 @@ const contactInfo = [
     href: "https://wa.me/48790733839"
   },
   {
-    icon: Globe,
-    title: "Call Us",
+    icon: Phone,
+    title: "Office Line",
     value: "+27 11 051 8583",
     description: "Cell: +27 81 506 9081",
     href: "tel:+27110518583"
@@ -285,7 +285,7 @@ function ContactInfoCards() {
             ) : (
               <p className="text-navy/80">{info.value}</p>
             )}
-            <p className="text-navy/50 text-sm mt-2">{info.description}</p>
+            {info.description && <p className="text-navy/50 text-sm mt-2">{info.description}</p>}
           </ElevatedCard>
         </motion.div>
       ))}
