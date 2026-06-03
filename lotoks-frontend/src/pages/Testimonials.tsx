@@ -71,8 +71,8 @@ const testimonials = [
   {
     id: 3,
     name: "Tanaka",
-    country: "Poland",
-    flag: "🇿🇦",
+    country: "Wsei University, Poland",
+    flag: "🇵🇱",
     type: "education",
     typeLabel: "Education",
     quote: "I am officially a graduate! Lotoks helped me secure my university admission and guided me through a flawless visa application. Highly recommend their services.",
