@@ -1,0 +1,11 @@
+{
+  "name": "lotoks-fullstack",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n backend,frontend -c blue,green \"cd lotoks-backend && npm run dev\" \"cd lotoks-frontend && npm run dev\"",
+    "install-all": "cd lotoks-backend && npm install && cd ../lotoks-frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -11,7 +11,7 @@ import {
   X
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { apiFetch } from "@/lib/api";
+import { apiFetch, apiJson } from "@/lib/api";
 import { validatePasswordStrength } from "@/lib/validation";
 
 export function ResetPasswordPage() {
@@ -53,7 +53,7 @@ export function ResetPasswordPage() {
         method: "POST",
         body: JSON.stringify({ token, password }),
       });
-      const data = await response.json();
+      const data = await apiJson(response);
       
       if (response.ok) {
         setSuccess(data.message || "Password updated successfully!");

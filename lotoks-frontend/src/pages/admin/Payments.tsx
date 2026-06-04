@@ -5,7 +5,7 @@ import {
   CreditCard, TrendingUp, DollarSign, Download, Loader2,
   AlertTriangle, Search, RefreshCw
 } from 'lucide-react';
-import { apiFetch } from '@/lib/api';
+import { apiFetch, apiJson } from '@/lib/api';
 import { Button } from '@/components/ui/Button';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { EmptyState } from '@/components/shared/EmptyState';
@@ -68,7 +68,7 @@ export function AdminPaymentsPage() {
       if (dateTo) p.set('to', dateTo);
       const res = await apiFetch(`/admin/payments?${p}`);
       if (!res.ok) throw new Error('Failed to load');
-      return res.json();
+      return apiJson(res);
     },
   });
 

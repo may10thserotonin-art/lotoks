@@ -1,11 +1,24 @@
-
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, ArrowLeft, RefreshCw, Terminal, X, ShieldCheck } from 'lucide-react';
+import {
+  Globe,
+  Mail,
+  Lock,
+  ArrowLeft,
+  Loader2,
+  AlertTriangle,
+  CheckCircle,
+  Terminal,
+  ShieldCheck,
+  X,
+} from 'lucide-react';
+import { useAuthStore } from '@/store/auth';
+import { Button } from '@/components/ui/Button';
 import { grantDevAccess, useDevAuthRestore, DEV_PIN } from '@/hooks/useDevAuth';
+import { validateEmail } from '@/lib/validation';
 
-// â”€â”€ Developer PIN Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Developer PIN Modal (preserved from original) ──
 function DevPinModal({ onClose }: { onClose: () => void }) {
   const navigate = useNavigate();
   const [pin, setPin] = useState(['', '', '', '', '', '']);
@@ -24,7 +37,6 @@ function DevPinModal({ onClose }: { onClose: () => void }) {
     setPin(next);
     setIsError(false);
     if (value && index < 5) pinRefs.current[index + 1]?.focus();
-    // Auto-verify when last digit filled
     if (index === 5 && value) {
       const code = [...next.slice(0, 5), value].join('');
       verify(code);
@@ -80,7 +92,6 @@ function DevPinModal({ onClose }: { onClose: () => void }) {
         className="w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl"
         style={{ background: '#0B1D3A', border: '1px solid rgba(201,164,75,0.3)' }}
       >
-        {/* Header */}
         <div
           className="flex items-center justify-between px-6 py-4"
           style={{ borderBottom: '1px solid rgba(201,164,75,0.15)' }}
@@ -99,7 +110,6 @@ function DevPinModal({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        {/* Body */}
         <div className="px-6 py-8 text-center">
           {isSuccess ? (
             <motion.div
@@ -120,7 +130,6 @@ function DevPinModal({ onClose }: { onClose: () => void }) {
                 6-digit access code required
               </p>
 
-              {/* PIN inputs */}
               <div
                 className={`flex justify-center gap-2 mb-6 ${isError ? 'animate-[shake_0.4s_ease-in-out]' : ''}`}
               >
@@ -178,221 +187,214 @@ function DevPinModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// â”€â”€ Main Login Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Main Login Page ──
 export default function LoginPage() {
   const navigate = useNavigate();
-  const [view, setView] = useState<'email' | 'otp'>('email');
+  const [searchParams] = useSearchParams();
+  const redirectTo = searchParams.get('redirect') || '/dashboard';
+  const { login, user, isLoading, isAuthenticated } = useAuthStore();
   const [email, setEmail] = useState('');
-  const [otp, setOtp] = useState(['', '', '', '', '', '']);
-  const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [countdown, setCountdown] = useState(0);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showDevModal, setShowDevModal] = useState(false);
-  const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const [showPassword, setShowPassword] = useState(false);
 
   // Rehydrate dev session on mount
   useDevAuthRestore();
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  // Redirect if already logged in
+  const isEmailValid = email === '' || validateEmail(email);
+
+  React.useEffect(() => {
+    if (user && !isLoading) {
+      navigate(redirectTo, { replace: true });
+    }
+  }, [user, isLoading, navigate, redirectTo]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      setView('otp');
-      setCountdown(60);
+    if (!validateEmail(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+    if (password.length < 8) {
+      setError('Password must be at least 8 characters.');
+      return;
+    }
+    setIsSubmitting(true);
+    setError('');
+    try {
+      await login(email, password);
+      navigate(redirectTo, { replace: true });
+    } catch (err: any) {
+      setError(err.message || 'Invalid credentials');
+    } finally {
+      setIsSubmitting(false);
     }
   };
-
-  const handleOtpChange = (index: number, value: string) => {
-    if (!/^\d*$/.test(value)) return;
-    const newOtp = [...otp];
-    newOtp[index] = value.slice(-1);
-    setOtp(newOtp);
-    setIsError(false);
-    setErrorMessage('');
-    if (value && index < 5) otpRefs.current[index + 1]?.focus();
-  };
-
-  const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
-    if (e.key === 'Backspace' && !otp[index] && index > 0) {
-      otpRefs.current[index - 1]?.focus();
-    }
-  };
-
-  const handlePaste = (e: React.ClipboardEvent) => {
-    const data = e.clipboardData.getData('text').slice(0, 6).split('');
-    if (data.every((char) => /^\d$/.test(char))) {
-      const newOtp = [...otp];
-      data.forEach((char, i) => { if (i < 6) newOtp[i] = char; });
-      setOtp(newOtp);
-      setIsError(false);
-      setErrorMessage('');
-      otpRefs.current[Math.min(data.length, 5)]?.focus();
-    }
-  };
-
-  const verifyOtp = () => {
-    const code = otp.join('');
-    if (code.length === 6 && code.endsWith('0')) {
-      window.location.href = '/dashboard';
-    } else {
-      setIsError(true);
-      setErrorMessage('Invalid verification code. Please try again.');
-      setTimeout(() => {
-        setIsError(false);
-        setOtp(['', '', '', '', '', '']);
-        setErrorMessage('');
-        otpRefs.current[0]?.focus();
-      }, 500);
-    }
-  };
-
-  useEffect(() => {
-    if (countdown > 0) {
-      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [countdown]);
 
   return (
     <>
-      <div className="min-h-screen bg-surface flex items-center justify-center p-6">
+      <div className="min-h-screen bg-navy flex items-center justify-center p-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-md card p-8 bg-white border border-outline-variant/30 rounded-2xl shadow-xl"
+          className="w-full max-w-sm"
         >
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-primary mb-2">
-              Lotoks<span>.</span>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="p-8 bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 shadow-2xl"
+          >
+            {/* Logo */}
+            <div className="flex justify-center mb-6">
+              <Link to="/" className="flex items-center">
+                <Globe className="w-8 h-8 text-gold" />
+                <span className="text-2xl font-heading font-bold text-white ml-3">
+                  Lotoks<span className="text-gold">.</span>
+                </span>
+              </Link>
+            </div>
+
+            <h2 className="text-2xl font-heading font-bold text-white mb-2 text-center">
+              Welcome Back
             </h2>
-            <p className="text-sm text-on-surface-variant font-medium">Expertise in Motion</p>
-          </div>
+            <p className="text-sm text-white/60 text-center mb-8">
+              Sign in to your account to continue
+            </p>
 
-          <AnimatePresence mode="wait">
-            {view === 'email' ? (
+            {/* Error */}
+            {error && (
               <motion.div
-                key="email"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-lg flex items-start"
               >
-                <h4 className="text-xl font-bold text-on-surface mb-6">Welcome Back</h4>
-                <form onSubmit={handleEmailSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">
-                      Email Address
-                    </label>
-                    <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant" size={18} />
-                      <input
-                        type="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full pl-12 pr-4 py-3 rounded-full bg-surface-container-low border border-outline-variant/30 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-sm font-medium"
-                        placeholder="name@company.com"
-                      />
-                    </div>
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full py-4 rounded-full bg-primary text-white font-bold hover:bg-primary-dim transition-all shadow-lg shadow-primary/20"
-                  >
-                    Send Verification Code
-                  </button>
-                  <p className="text-[10px] text-center text-outline-variant leading-relaxed uppercase tracking-tighter">
-                    By signing in, you agree to our{' '}
-                    <span className="text-primary font-bold">Terms of Service</span> and{' '}
-                    <span className="text-primary font-bold">Privacy Policy</span>.
-                  </p>
-                </form>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="otp"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-              >
-                <button
-                  onClick={() => setView('email')}
-                  className="mb-6 flex items-center gap-2 text-xs font-bold text-outline-variant hover:text-primary transition-colors"
-                >
-                  <ArrowLeft size={16} /> Change Email
-                </button>
-                <h4 className="text-xl font-bold text-on-surface mb-2">Verify Identity</h4>
-                <p className="text-sm text-on-surface-variant mb-8">
-                  We&apos;ve sent a 6-digit code to{' '}
-                  <span className="text-primary font-bold">{email}</span>
-                </p>
-
-                <div aria-live="polite" aria-atomic="true" className="sr-only">
-                  {errorMessage}
-                </div>
-
-                <div
-                  className={`flex justify-between gap-2 mb-8 ${isError ? 'shake-input' : ''}`}
-                  role="group"
-                  aria-label="Verification code input"
-                >
-                  {otp.map((digit, i) => (
-                    <input
-                      key={i}
-                      ref={(el) => { otpRefs.current[i] = el; }}
-                      type="text"
-                      inputMode="numeric"
-                      autoComplete="one-time-code"
-                      maxLength={1}
-                      value={digit}
-                      onChange={(e) => handleOtpChange(i, e.target.value)}
-                      onKeyDown={(e) => handleKeyDown(i, e)}
-                      onPaste={handlePaste}
-                      aria-label={`Digit ${i + 1} of verification code`}
-                      aria-invalid={isError}
-                      aria-describedby={isError ? 'otp-error' : undefined}
-                      className={`w-12 h-14 text-center text-xl font-bold rounded-xl bg-surface-container-low border border-outline-variant/30 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none ${
-                        isError ? 'border-error text-error' : ''
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                {isError && (
-                  <p id="otp-error" className="text-error text-sm text-center mb-4" role="alert">
-                    Invalid code. Please check and try again.
-                  </p>
-                )}
-
-                <button
-                  onClick={verifyOtp}
-                  className="w-full py-4 rounded-full bg-primary text-white font-bold hover:bg-primary-dim transition-all shadow-lg shadow-primary/20 mb-6"
-                >
-                  Verify &amp; Continue
-                </button>
-
-                <div className="text-center">
-                  {countdown > 0 ? (
-                    <p className="text-xs text-outline-variant">
-                      Resend code in <span className="text-primary font-bold">{countdown}s</span>
-                    </p>
-                  ) : (
-                    <button
-                      onClick={() => setCountdown(60)}
-                      className="flex items-center gap-2 mx-auto text-xs font-bold text-primary hover:underline"
-                    >
-                      <RefreshCw size={14} /> Resend Code
-                    </button>
-                  )}
-                </div>
+                <AlertTriangle className="w-5 h-5 text-red-400 mr-2 flex-shrink-0 mt-0.5" />
+                <span className="text-red-200 text-sm">{error}</span>
               </motion.div>
             )}
-          </AnimatePresence>
 
-          {/* Developer Preview Link â€” subtle, at bottom */}
-          <div className="mt-8 pt-6" style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+            {/* Login Form */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-white/70 mb-2">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-3.5 w-5 h-5 text-white/40" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setError('');
+                    }}
+                    placeholder="Enter your email"
+                    className={`w-full pl-10 pr-4 py-3 bg-white/10 border ${
+                      isEmailValid ? 'border-white/20' : 'border-red-400'
+                    } rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-gold transition-colors`}
+                    disabled={isSubmitting}
+                    required
+                  />
+                </div>
+                {!isEmailValid && (
+                  <span className="text-red-400 text-xs mt-1 block">
+                    Please enter a valid email address
+                  </span>
+                )}
+              </div>
+
+              <div>
+                <div className="flex justify-between items-center mb-2">
+                  <label className="block text-sm font-medium text-white/70">
+                    Password
+                  </label>
+                  <Link
+                    to="/forgot-password"
+                    className="text-xs text-gold hover:underline font-medium"
+                  >
+                    Forgot Password?
+                  </Link>
+                </div>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-3.5 w-5 h-5 text-white/40" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setError('');
+                    }}
+                    placeholder="Enter your password"
+                    className="w-full pl-10 pr-12 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-gold transition-colors"
+                    disabled={isSubmitting}
+                    required
+                  />
+                </div>
+              </div>
+
+              <Button
+                type="submit"
+                variant="primary"
+                size="lg"
+                className="w-full flex items-center justify-center"
+                disabled={isSubmitting || email === '' || password === '' || !validateEmail(email)}
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                    Signing in...
+                  </>
+                ) : (
+                  'Sign In'
+                )}
+              </Button>
+            </form>
+
+            {/* Sign Up Link */}
+            <div className="mt-6 text-center">
+              <p className="text-sm text-white/50">
+                Don&apos;t have an account?{' '}
+                <Link to={`/register${redirectTo !== '/dashboard' ? `?redirect=${encodeURIComponent(redirectTo)}` : ''}`} className="text-gold hover:underline font-medium">
+                  Sign Up
+                </Link>
+              </p>
+            </div>
+
+            {/* Divider */}
+            <div className="my-6 flex items-center gap-3">
+              <div className="flex-1 h-px bg-white/10" />
+              <span className="text-xs text-white/30">OR</span>
+              <div className="flex-1 h-px bg-white/10" />
+            </div>
+
+            {/* Back to Home */}
+            <div className="text-center">
+              <Link
+                to="/"
+                className="text-sm text-white/40 hover:text-white/70 transition-colors font-medium"
+              >
+                ← Back to Home
+              </Link>
+            </div>
+            <div className="mt-3 text-center">
+              <Link
+                to="/admin/login"
+                className="text-xs text-white/30 hover:text-gold transition-colors"
+              >
+                Admin Login
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Developer Preview Link */}
+          <div className="mt-4 text-center">
             <button
               onClick={() => setShowDevModal(true)}
-              className="flex items-center gap-1.5 mx-auto text-xs font-medium transition-colors hover:opacity-80"
-              style={{ color: 'rgba(107,114,128,0.6)' }}
+              className="inline-flex items-center gap-1.5 text-xs font-medium transition-colors hover:opacity-80"
+              style={{ color: 'rgba(255,255,255,0.2)' }}
             >
               <Terminal className="w-3 h-3" />
               Developer Preview
@@ -408,4 +410,3 @@ export default function LoginPage() {
     </>
   );
 }
-

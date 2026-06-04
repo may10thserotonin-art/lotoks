@@ -14,7 +14,7 @@ import {
   User
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { apiFetch } from "@/lib/api";
+import { apiFetch, apiJson } from "@/lib/api";
 import { validateEmail, validatePasswordStrength } from "@/lib/validation";
 
 export function AdminSignupPage() {
@@ -23,7 +23,7 @@ export function AdminSignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [role, setRole] = useState("reviewer"); // default role
+  const [role, setRole] = useState("admin"); // default role
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -65,14 +65,14 @@ export function AdminSignupPage() {
         method: "POST",
         body: JSON.stringify({ email, password, role }),
       });
-      const data = await response.json();
+      const data = await apiJson<{ message?: string }>(response);
       if (response.ok) {
         setSuccess("Staff admin created successfully! Verification email generated.");
         // Clear form
         setEmail("");
         setPassword("");
         setConfirmPassword("");
-        setRole("reviewer");
+        setRole("admin");
       } else {
         setError(data.message || "Failed to create admin");
       }
@@ -279,9 +279,7 @@ export function AdminSignupPage() {
                 className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-gold appearance-none [&>option]:bg-navy [&>option]:text-white"
                 disabled={isSubmitting}
               >
-                <option value="reviewer">Reviewer</option>
-                <option value="finance">Finance</option>
-                <option value="recruiter">Recruiter</option>
+                <option value="admin">Admin</option>
               </select>
             </div>
           </div>

@@ -3,10 +3,10 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import {
   Inbox, FileText, Download, CheckCircle2, XCircle, MessageSquare,
-  ChevronDown, Search, Loader2, AlertTriangle, User, Mail, Globe,
-  Calendar, Clock
+  Search, Loader2, AlertTriangle, User, Mail, Globe,
+  Calendar
 } from 'lucide-react';
-import { apiFetch } from '@/lib/api';
+import { apiFetch, apiJson } from '@/lib/api';
 import { Button } from '@/components/ui/Button';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { SlidePanel } from '@/components/shared/SlidePanel';
@@ -60,8 +60,15 @@ export function AdminQueuePage() {
       if (statusFilter) params.set('status', statusFilter);
       if (typeFilter) params.set('serviceType', typeFilter);
       const res = await apiFetch(`/admin/queue?${params}`);
-      if (!res.ok) throw new Error('Failed to fetch queue');
-      const data = await res.json();
+      if (!res.ok) {
+        let detail = `Request failed (${res.status})`;
+        try {
+          const errBody = await res.clone().json();
+          detail = errBody.message || detail;
+        } catch { /* ignore parse failures */ }
+        throw new Error(detail);
+      }
+      const data = await apiJson(res);
       return data.applications ?? data;
     },
   });
@@ -150,9 +157,12 @@ export function AdminQueuePage() {
           <Loader2 className="w-8 h-8 text-gold animate-spin" />
         </div>
       ) : error ? (
-        <div className="flex items-center gap-2 p-4 rounded-xl bg-red/10 border border-red/20 text-red/80">
-          <AlertTriangle className="w-5 h-5" />
-          <span className="text-sm">Failed to load queue. Check your connection.</span>
+        <div className="flex items-start gap-3 p-4 rounded-xl bg-red/10 border border-red/20 text-red/80">
+          <AlertTriangle className="w-5 h-5 mt-0.5 flex-shrink-0" />
+          <div>
+            <p className="text-sm font-medium">Failed to load queue</p>
+            <p className="text-xs text-red/60 mt-1">{error instanceof Error ? error.message : 'Unknown error'}</p>
+          </div>
         </div>
       ) : filtered.length === 0 ? (
         <EmptyState

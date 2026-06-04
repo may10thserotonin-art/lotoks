@@ -34,9 +34,9 @@ const footerLinks = {
 // Social media icons
 const socialLinks = [
   { icon: Globe2, href: "https://facebook.com/lotoks", label: "Facebook" },
-  { icon: MessageCircle, href: "https://twitter.com/lotoks", label: "Twitter" },
+  { icon: MessageCircle, href: "https://x.com/LotoksConsult", label: "X" },
   { icon: Briefcase, href: "https://linkedin.com/company/lotoks", label: "LinkedIn" },
-  { icon: Heart, href: "https://instagram.com/lotoks", label: "Instagram" },
+  { icon: Heart, href: "https://www.instagram.com/lotoks_projects/", label: "Instagram" },
 ];
 
 export function Footer() {

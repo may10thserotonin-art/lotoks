@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
 import { UserCog, Plus, Loader2, AlertTriangle, Trash2, Mail, Shield } from 'lucide-react';
-import { apiFetch } from '@/lib/api';
+import { apiFetch, apiJson } from '@/lib/api';
 import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/shared/Modal';
 import { EmptyState } from '@/components/shared/EmptyState';
@@ -18,9 +18,7 @@ interface StaffMember {
 
 const ROLE_COLORS: Record<string, string> = {
   super_admin: 'bg-gold/15 text-gold border-gold/20',
-  reviewer: 'bg-blue-500/15 text-blue-400 border-blue-500/20',
-  finance: 'bg-green-500/15 text-green-400 border-green-500/20',
-  recruiter: 'bg-purple-500/15 text-purple-400 border-purple-500/20',
+  admin: 'bg-blue-500/15 text-blue-400 border-blue-500/20',
 };
 
 export function AdminStaffPage() {
@@ -28,7 +26,7 @@ export function AdminStaffPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [formEmail, setFormEmail] = useState('');
   const [formPassword, setFormPassword] = useState('');
-  const [formRole, setFormRole] = useState('reviewer');
+  const [formRole, setFormRole] = useState('admin');
   const [submitting, setSubmitting] = useState(false);
 
   const { data, isLoading, error } = useQuery<StaffMember[]>({
@@ -36,7 +34,7 @@ export function AdminStaffPage() {
     queryFn: async () => {
       const res = await apiFetch('/admin/staff');
       if (!res.ok) throw new Error('Failed');
-      const d = await res.json();
+      const d = await apiJson(res);
       return d.staff ?? d;
     },
   });
@@ -50,13 +48,13 @@ export function AdminStaffPage() {
         body: JSON.stringify({ email: formEmail, password: formPassword, role: formRole }),
       });
       if (!res.ok) {
-        const err = await res.json();
+        const err = await apiJson(res);
         throw new Error(err.message || 'Failed to create admin');
       }
       toast.success('Admin account created!');
       qc.invalidateQueries({ queryKey: ['adminStaff'] });
       setModalOpen(false);
-      setFormEmail(''); setFormPassword(''); setFormRole('reviewer');
+      setFormEmail(''); setFormPassword(''); setFormRole('admin');
     } catch (err: unknown) {
       toast.error(err instanceof Error ? err.message : 'Failed to create admin.');
     } finally {
@@ -166,9 +164,8 @@ export function AdminStaffPage() {
               onChange={(e) => setFormRole(e.target.value)}
               className="w-full px-4 py-3 rounded-xl bg-navy border border-white/10 text-white focus:outline-none focus:border-gold/50 text-sm appearance-none cursor-pointer"
             >
-              <option value="reviewer">Reviewer</option>
-              <option value="finance">Finance</option>
-              <option value="recruiter">Recruiter</option>
+              <option value="admin">Admin</option>
+              <option value="super_admin">Super Admin</option>
             </select>
           </div>
           <div className="flex gap-3 pt-2">

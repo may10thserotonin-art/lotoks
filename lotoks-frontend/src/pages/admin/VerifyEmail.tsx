@@ -8,7 +8,7 @@ import {
   Loader2
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { apiFetch } from "@/lib/api";
+import { apiFetch, apiJson } from "@/lib/api";
 
 export function VerifyEmailPage() {
   const [searchParams] = useSearchParams();
@@ -31,7 +31,7 @@ export function VerifyEmailPage() {
           method: "POST",
           body: JSON.stringify({ token }),
         });
-        const data = await response.json();
+        const data = await apiJson(response);
         
         if (response.ok) {
           setStatus("success");

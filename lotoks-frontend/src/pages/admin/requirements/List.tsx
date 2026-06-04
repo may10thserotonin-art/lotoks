@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Plane, GraduationCap, Briefcase, Home, ArrowRight, Loader2, AlertTriangle } from 'lucide-react';
-import { apiFetch } from '@/lib/api';
+import { apiFetch, apiJson } from '@/lib/api';
 
 const SERVICE_CARDS = [
   {
@@ -47,7 +47,7 @@ export function AdminRequirementsListPage() {
     queryFn: async () => {
       const res = await apiFetch('/admin/requirements');
       if (!res.ok) throw new Error('Failed');
-      return res.json();
+      return apiJson(res);
     },
   });
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { Languages, Save, Search, Loader2, AlertTriangle } from 'lucide-react';
-import { apiFetch } from '@/lib/api';
+import { apiFetch, apiJson } from '@/lib/api';
 import { Button } from '@/components/ui/Button';
 import { toast } from '@/components/shared/Toast';
 
@@ -41,14 +41,14 @@ export function AdminLanguagesPage() {
     queryFn: async () => {
       try {
         const res = await apiFetch('/admin/languages');
-        if (res.ok) return res.json();
+        if (res.ok) return apiJson(res);
       } catch { /* fall through to static */ }
       // Fallback: load locale files from public folder
       const langs: Translations = {};
       for (const l of LANGS) {
         try {
           const r = await fetch(`/locales/${l.code}.json`);
-          if (r.ok) langs[l.code] = flattenObj(await r.json());
+          if (r.ok) langs[l.code] = flattenObj(await apiJson(r));
         } catch { langs[l.code] = {}; }
       }
       return langs;

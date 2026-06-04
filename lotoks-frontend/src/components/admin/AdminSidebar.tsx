@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Globe,
   List,
@@ -10,13 +10,19 @@ import {
   Settings,
   Languages,
   LogOut,
+  Shield,
 } from 'lucide-react';
+
+const roleIcons: Record<string, React.ElementType> = {
+  super_admin: Shield,
+  admin: Users,
+};
 
 interface Admin {
   id: number;
   email: string;
   name: string;
-  role: 'super_admin' | 'reviewer' | 'finance' | 'recruiter';
+  role: 'super_admin' | 'admin';
 }
 
 interface AdminSidebarProps {
@@ -40,14 +46,17 @@ const superAdminItems = [
 
 function AdminSidebar({ admin, onLogout }: AdminSidebarProps) {
   const location = useLocation();
+  const isSuperAdmin = admin.role === 'super_admin';
 
   const navItems = [
     ...baseItems,
-    ...(admin.role === 'super_admin' ? superAdminItems : []),
+    ...(isSuperAdmin ? superAdminItems : []),
   ];
 
   const isActive = (href: string) =>
     location.pathname === href || location.pathname.startsWith(href + '/');
+
+  const RoleIcon = roleIcons[admin.role] || Shield;
 
   return (
     <aside className="hidden lg:flex flex-col w-64 flex-shrink-0 bg-navy border-r border-white/10 min-h-screen">
@@ -64,9 +73,20 @@ function AdminSidebar({ admin, onLogout }: AdminSidebarProps) {
       </div>
 
       {/* Admin info */}
-      <div className="px-5 py-4 border-b border-white/10">
+      <div className="px-5 py-4 border-b border-white/10 space-y-2">
         <p className="text-white/90 text-sm font-medium truncate">{admin.name || admin.email}</p>
-        <p className="text-gold/70 text-xs mt-0.5 capitalize">{admin.role.replace('_', ' ')}</p>
+        
+        {/* Role badge */}
+        <div className="flex items-center gap-2">
+          <div className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 ${
+            isSuperAdmin
+              ? 'bg-gold/10 text-gold'
+              : 'bg-white/10 text-white/60'
+          }`}>
+            <RoleIcon size={10} />
+            {admin.role === 'super_admin' ? 'Super Admin' : 'Admin'}
+          </div>
+        </div>
       </div>
 
       {/* Nav */}

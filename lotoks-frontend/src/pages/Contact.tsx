@@ -2,16 +2,20 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
-import { 
-  Globe, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Clock, 
+import {
+  Globe,
+  Globe2,
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
   Send,
   CheckCircle,
   AlertCircle,
-  ArrowRight
+  ArrowRight,
+  MessageCircle,
+  Briefcase,
+  Heart
 } from "lucide-react";
 import { Navbar, SectionWrapper, SectionHeading } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
@@ -456,6 +460,59 @@ export default function ContactPage() {
                 Quick Questions?
               </h3>
               <FAQLinks />
+            </div>
+
+            {/* Social Media */}
+            <div>
+              <h3 className="text-xl font-heading font-bold text-navy mb-4">
+                Follow Us
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                <motion.a
+                  href="https://x.com/LotoksConsult"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 px-5 py-3 rounded-xl bg-navy/5 border border-navy/10 hover:bg-navy/10 hover:border-gold/30 transition-all group"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <MessageCircle className="w-5 h-5 text-gold" />
+                  <span className="text-sm font-medium text-navy/70 group-hover:text-navy">X</span>
+                </motion.a>
+                <motion.a
+                  href="https://www.instagram.com/lotoks_projects/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 px-5 py-3 rounded-xl bg-navy/5 border border-navy/10 hover:bg-navy/10 hover:border-gold/30 transition-all group"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Heart className="w-5 h-5 text-gold" />
+                  <span className="text-sm font-medium text-navy/70 group-hover:text-navy">Instagram</span>
+                </motion.a>
+                <motion.a
+                  href="https://facebook.com/lotoks"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 px-5 py-3 rounded-xl bg-navy/5 border border-navy/10 hover:bg-navy/10 hover:border-gold/30 transition-all group"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Globe2 className="w-5 h-5 text-gold" />
+                  <span className="text-sm font-medium text-navy/70 group-hover:text-navy">Facebook</span>
+                </motion.a>
+                <motion.a
+                  href="https://linkedin.com/company/lotoks"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 px-5 py-3 rounded-xl bg-navy/5 border border-navy/10 hover:bg-navy/10 hover:border-gold/30 transition-all group"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Briefcase className="w-5 h-5 text-gold" />
+                  <span className="text-sm font-medium text-navy/70 group-hover:text-navy">LinkedIn</span>
+                </motion.a>
+              </div>
             </div>
 
             {/* Office Hours */}

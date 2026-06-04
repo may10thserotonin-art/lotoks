@@ -11,7 +11,7 @@ import {
   Loader2
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { apiFetch } from "@/lib/api";
+import { apiFetch, apiJson } from "@/lib/api";
 import { validateEmail } from "@/lib/validation";
 
 export function AdminLoginPage() {
@@ -66,7 +66,7 @@ export function AdminLoginPage() {
         method: "POST",
         body: JSON.stringify({ email }),
       });
-      const data = await res.json();
+      const data = await apiJson<{ message?: string }>(res);
       if (res.ok) {
         setSuccess(data.message || "Reset link generated.");
       } else {

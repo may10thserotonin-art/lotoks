@@ -1,32 +1,38 @@
 {
   "name": "lotoks-backend",
   "version": "1.0.0",
-  "type": "module",
-  "main": "dist/server.js",
+  "description": "Lotoks admin backend API",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "tsnd --respawn --transpile-only src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/index.js",
+    "dev": "nodemon",
+    "seed": "ts-node src/seed.ts"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^3.0.3",
+    "bcrypt": "^6.0.0",
+    "better-sqlite3": "^12.10.0",
     "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "express": "^4.21.2",
-    "express-rate-limit": "^8.5.2",
-    "helmet": "^8.2.0",
+    "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-    "sqlite3": "^5.1.7"
+    "multer": "^2.1.1"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
-    "@types/cookie-parser": "^1.4.8",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.0",
-    "@types/jsonwebtoken": "^9.0.8",
-    "@types/node": "^22.10.7",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.7.3"
+    "@types/bcrypt": "^6.0.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.1.0",
+    "@types/node": "^25.9.1",
+    "nodemon": "^3.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
   }
 }

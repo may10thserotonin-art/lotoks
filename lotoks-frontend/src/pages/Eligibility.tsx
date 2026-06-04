@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Sparkles, 
@@ -18,8 +18,10 @@ import {
   Utensils,
   Wrench,
   Users,
-  Building2
+  Building2,
+  LogIn
 } from "lucide-react";
+import { useAuthStore } from '@/store/auth';
 
 const jobCategories = [
   { 
@@ -80,6 +82,8 @@ const steps = [
 ];
 
 export default function EligibilityPage() {
+  const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuthStore();
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
@@ -358,17 +362,32 @@ export default function EligibilityPage() {
                   transition={{ delay: 0.6 }}
                   className="grid gap-3 w-full max-w-sm mt-4"
                 >
-                  <a 
-                    href={`https://wa.me/48790733839?text=${encodeURIComponent(
-                      `Hi Lotoks! I just completed the eligibility check.%0a%0a${selectedGoal === "job" && selectedJob ? `Goal: Work Overseas%0aJob Category: ${selectedJob.label}%0a` : "Goal: Study Abroad%0a"}%0aI'd like to continue with my application. Please guide me on the next steps.`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-4 rounded-full bg-gradient-to-r from-primary to-primary/80 text-white font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 group"
-                  >
-                    Continue on WhatsApp
-                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </a>
+                  {isAuthenticated ? (
+                    <Link
+                      to={`/apply?type=${selectedGoal || 'visa'}${selectedGoal === "job" && answers[2] ? `&category=${answers[2]}` : ''}`}
+                      className="w-full py-4 rounded-full bg-gradient-to-r from-gold to-gold/80 text-navy font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-gold/20 transition-all duration-300 group"
+                    >
+                      Start Your Application
+                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  ) : (
+                    <>
+                      <Link
+                        to={`/login?redirect=${encodeURIComponent(`/apply?type=${selectedGoal || 'visa'}${selectedGoal === "job" && answers[2] ? `&category=${answers[2]}` : ''}`)}`}
+                        className="w-full py-4 rounded-full bg-gradient-to-r from-gold to-gold/80 text-navy font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-gold/20 transition-all duration-300 group"
+                      >
+                        <LogIn size={18} />
+                        Apply Now – Login Required
+                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                      <Link
+                        to="/register"
+                        className="text-xs font-bold text-outline-variant hover:text-gold py-2 transition-colors"
+                      >
+                        No account? Create one
+                      </Link>
+                    </>
+                  )}
                   <button onClick={() => { setIsFinished(false); setCurrentStep(0); setAnswers({}); setSelectedGoal(null); setShowJobs(false); }} className="text-xs font-bold text-outline-variant hover:text-primary py-2 transition-colors">
                     Retake Assessment
                   </button>

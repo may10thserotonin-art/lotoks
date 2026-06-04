@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   Menu,
@@ -12,6 +12,7 @@ import {
   Settings,
   Languages,
   LogOut,
+  Shield,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -19,13 +20,18 @@ interface Admin {
   id: number;
   email: string;
   name: string;
-  role: 'super_admin' | 'reviewer' | 'finance' | 'recruiter';
+  role: 'super_admin' | 'admin';
 }
 
 interface AdminMobileNavProps {
   admin: Admin | null;
   onLogout: () => void;
 }
+
+const roleIcons: Record<string, React.ElementType> = {
+  super_admin: Shield,
+  admin: Users,
+};
 
 const baseItems = [
   { name: 'Queue', href: '/admin/queue', icon: List },
@@ -42,14 +48,19 @@ const superAdminItems = [
 ];
 
 function AdminMobileNav({ admin, onLogout }: AdminMobileNavProps) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const location = useLocation();
 
   React.useEffect(() => { setOpen(false); }, [location.pathname]);
 
+  if (!admin) return null;
+
+  const isSuperAdmin = admin.role === 'super_admin';
+  const RoleIcon = roleIcons[admin.role] || Shield;
+
   const navItems = [
     ...baseItems,
-    ...(admin?.role === 'super_admin' ? superAdminItems : []),
+    ...(isSuperAdmin ? superAdminItems : []),
   ];
 
   const isActive = (href: string) =>
@@ -113,12 +124,19 @@ function AdminMobileNav({ admin, onLogout }: AdminMobileNavProps) {
               </div>
 
               {/* Admin info */}
-              {admin && (
-                <div className="px-5 py-3 border-b border-white/10">
-                  <p className="text-white/90 text-sm font-medium truncate">{admin.name || admin.email}</p>
-                  <p className="text-gold/70 text-xs capitalize">{admin.role.replace('_', ' ')}</p>
+              <div className="px-5 py-3 border-b border-white/10 space-y-2">
+                <p className="text-white/90 text-sm font-medium truncate">{admin.name || admin.email}</p>
+                <div className="flex items-center gap-2">
+                  <div className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 ${
+                    isSuperAdmin
+                      ? 'bg-gold/10 text-gold'
+                      : 'bg-white/10 text-white/60'
+                  }`}>
+                    <RoleIcon size={10} />
+                    {admin.role === 'super_admin' ? 'Super Admin' : 'Admin'}
+                  </div>
                 </div>
-              )}
+              </div>
 
               {/* Nav */}
               <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">

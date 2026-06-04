@@ -20,7 +20,6 @@ import {
   X,
   Bell,
   ChevronDown,
-  DollarSign
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -82,7 +81,6 @@ export function Sidebar({ isAdmin = false }: { isAdmin?: boolean }) {
     { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
     { href: "/apply", icon: PlusCircle, label: "Apply New" },
     { href: "/documents", icon: FolderOpen, label: "My Documents" },
-    { href: "/payment", icon: DollarSign, label: "Payments" },
     { href: "/opportunities", icon: Search, label: "Opportunities" },
     { href: "/profile", icon: User, label: "Profile", mt: "mt-auto" },
   ];
@@ -123,7 +121,6 @@ export function MobileTabBar() {
     { href: "/dashboard", icon: LayoutDashboard, label: "Home" },
     { href: "/apply", icon: PlusCircle, label: "Apply" },
     { href: "/documents", icon: FolderOpen, label: "Files" },
-    { href: "/payment", icon: DollarSign, label: "Pay" },
     { href: "/opportunities", icon: Search, label: "Jobs" },
   ];
 
@@ -163,7 +160,6 @@ export function MobileMenu() {
     { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
     { href: "/apply", icon: PlusCircle, label: "Apply New" },
     { href: "/documents", icon: FolderOpen, label: "My Documents" },
-    { href: "/payment", icon: DollarSign, label: "Payments" },
     { href: "/opportunities", icon: Search, label: "Opportunities" },
   ];
 
@@ -252,6 +248,3 @@ export function MobileMenu() {
   );
 }
 
-export function MobileAdminMenu() {
-  return <MobileMenu />;
-}

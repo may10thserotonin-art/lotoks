@@ -6,7 +6,7 @@ import {
   ArrowLeft, Plus, Save, Trash2, ChevronUp, ChevronDown,
   GripVertical, Loader2, AlertTriangle, FileText, CheckSquare, Square
 } from 'lucide-react';
-import { apiFetch } from '@/lib/api';
+import { apiFetch, apiJson } from '@/lib/api';
 import { Button } from '@/components/ui/Button';
 import { toast } from '@/components/shared/Toast';
 
@@ -52,7 +52,7 @@ export function AdminRequirementsEditorPage() {
     queryFn: async () => {
       const res = await apiFetch(`/admin/requirements/${serviceType}`);
       if (!res.ok) throw new Error('Failed');
-      const data = await res.json();
+      const data = await apiJson(res);
       const cats: Category[] = (data.categories ?? []).map((c: Category) => ({
         ...c,
         id: c.id ?? uid(),

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Outlet, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAdminAuth } from '@/store/adminAuth';
 import AdminSidebar from './AdminSidebar';
@@ -9,10 +9,6 @@ export function AdminLayout() {
   const { admin, isLoading, logout } = useAdminAuth();
   const location = useLocation();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    useAdminAuth.getState().checkAuth();
-  }, []);
 
   const handleLogout = async () => {
     await (logout as () => Promise<void>)();

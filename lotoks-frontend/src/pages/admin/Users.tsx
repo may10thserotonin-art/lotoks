@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import {
   Users, Search, ShieldCheck, ShieldOff, Loader2, AlertTriangle, UserX
 } from 'lucide-react';
-import { apiFetch } from '@/lib/api';
+import { apiFetch, apiJson } from '@/lib/api';
 import { EmptyState } from '@/components/shared/EmptyState';
 import { toast } from '@/components/shared/Toast';
 
@@ -29,7 +29,7 @@ export function AdminUsersPage() {
       if (verifiedFilter) p.set('verified', verifiedFilter);
       const res = await apiFetch(`/admin/users?${p}`);
       if (!res.ok) throw new Error('Failed');
-      const d = await res.json();
+      const d = await apiJson(res);
       return d.users ?? d;
     },
   });

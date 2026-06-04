@@ -2,20 +2,23 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { 
-  Globe, 
-  ArrowRight, 
-  CheckCircle, 
-  Users, 
-  Award, 
-  Building2, 
+import {
+  Globe,
+  Globe2,
+  ArrowRight,
+  CheckCircle,
+  Users,
+  Award,
+  Building2,
   GraduationCap,
   Briefcase,
   Home,
   Star,
   Quote,
   ExternalLink,
-  Handshake
+  Handshake,
+  MessageCircle,
+  Heart
 } from "lucide-react";
 import { Navbar, PageHero, SectionWrapper, SectionHeading } from "@/components/marketing/Navbar";
 import { Footer } from "@/components/marketing/Footer";
@@ -626,6 +629,85 @@ function StatsSection() {
   );
 }
 
+// Social Media Section
+function SocialSection() {
+  return (
+    <section className="py-16 px-4 bg-white">
+      <div className="max-w-3xl mx-auto text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl font-heading font-bold text-navy mb-3"
+        >
+          Follow <span className="text-gold">Lotoks</span>
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-navy/60 mb-8"
+        >
+          Stay connected with us on social media for the latest opportunities and updates.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="flex flex-wrap items-center justify-center gap-4"
+        >
+          <motion.a
+            href="https://x.com/LotoksConsult"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 px-6 py-4 rounded-xl bg-navy/5 border border-navy/10 hover:bg-navy/10 hover:border-gold/30 transition-all group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <MessageCircle className="w-5 h-5 text-gold" />
+            <span className="font-medium text-navy/70 group-hover:text-navy">X</span>
+          </motion.a>
+          <motion.a
+            href="https://www.instagram.com/lotoks_projects/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 px-6 py-4 rounded-xl bg-navy/5 border border-navy/10 hover:bg-navy/10 hover:border-gold/30 transition-all group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Heart className="w-5 h-5 text-gold" />
+            <span className="font-medium text-navy/70 group-hover:text-navy">Instagram</span>
+          </motion.a>
+          <motion.a
+            href="https://facebook.com/lotoks"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 px-6 py-4 rounded-xl bg-navy/5 border border-navy/10 hover:bg-navy/10 hover:border-gold/30 transition-all group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Globe2 className="w-5 h-5 text-gold" />
+            <span className="font-medium text-navy/70 group-hover:text-navy">Facebook</span>
+          </motion.a>
+          <motion.a
+            href="https://linkedin.com/company/lotoks"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 px-6 py-4 rounded-xl bg-navy/5 border border-navy/10 hover:bg-navy/10 hover:border-gold/30 transition-all group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Briefcase className="w-5 h-5 text-gold" />
+            <span className="font-medium text-navy/70 group-hover:text-navy">LinkedIn</span>
+          </motion.a>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 // Final CTA Section
 function FinalCTA() {
   return (
@@ -676,6 +758,7 @@ export default function HomePage() {
       <PartnersSection />
       <TestimonialsPreview />
       <StatsSection />
+      <SocialSection />
       <FinalCTA />
       <Footer />
     </main>

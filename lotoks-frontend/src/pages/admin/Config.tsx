@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import { Settings, Save, Eye, EyeOff, Loader2, AlertTriangle, CheckCircle } from 'lucide-react';
-import { apiFetch } from '@/lib/api';
+import { Settings, Save, Eye, EyeOff, Loader2, AlertTriangle } from 'lucide-react';
+import { apiFetch, apiJson } from '@/lib/api';
 import { Button } from '@/components/ui/Button';
 import { toast } from '@/components/shared/Toast';
 
@@ -52,7 +52,7 @@ export function AdminConfigPage() {
     queryFn: async () => {
       const res = await apiFetch('/admin/config');
       if (!res.ok) throw new Error('Failed');
-      const data = await res.json();
+      const data = await apiJson(res);
       const cfg = data.config ?? data;
       setValues(cfg);
       setLoaded(true);

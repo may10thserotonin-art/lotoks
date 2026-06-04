@@ -1,25 +1,11 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useAdminAuth } from "@/store/adminAuth";
-import { apiFetch } from "@/lib/api";
+import { apiFetch, apiJson } from "@/lib/api";
 import { motion } from "framer-motion";
-import { 
-  Globe, 
-  Users, 
-  List, 
-  Clock, 
-  CheckCircle, 
-  X, 
+import {
   AlertTriangle,
-  Info,
-  Loader2,
-  Check,
-  Settings,
-  Trash2,
-  MessageSquare,
-  DollarSign,
-  MapPin,
-  Calendar
+  Loader2
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -66,7 +52,7 @@ export function AdminListingsPage() {
       if (filters.country) query.set("country", filters.country);
       if (filters.active) query.set("active", filters.active);
       const response = await apiFetch(`/admin/listings?${query.toString()}`);
-      return response.json();
+      return apiJson(response);
     }
   });
 
@@ -131,7 +117,7 @@ export function AdminListingsPage() {
         refetch();
         handleCloseModal();
       } else if (response) {
-        const errData = await response.json();
+        const errData = await apiJson(response);
         throw new Error(errData.message || "Failed to save listing");
       }
     } catch (err) {
@@ -149,7 +135,7 @@ export function AdminListingsPage() {
       if (response.ok) {
         refetch();
       } else {
-        const errData = await response.json();
+        const errData = await apiJson(response);
         throw new Error(errData.message || "Failed to delete listing");
       }
     } catch (err) {
