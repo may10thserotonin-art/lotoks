@@ -2,13 +2,19 @@ import Database from 'better-sqlite3';
 import path from 'path';
 import fs from 'fs';
 
-const DB_PATH = process.env.DB_PATH || path.join(__dirname, '..', 'data', 'lotoks.db');
+// Vercel serverless: only /tmp is writable and ephemeral
+// Local dev: use data/ directory relative to project root
+const DB_PATH = process.env.DB_PATH || (
+  process.env.VERCEL
+    ? '/tmp/lotoks.db'
+    : path.join(__dirname, '..', 'data', 'lotoks.db')
+);
 
 let db: Database.Database;
 
 export function getDb(): Database.Database {
   if (!db) {
-    // Ensure the data directory exists
+    // Ensure the directory exists (both /tmp and local data/)
     const dir = path.dirname(DB_PATH);
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });

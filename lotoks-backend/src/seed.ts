@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { initializeDb, getDb } from './db';
 
 function seed() {
